@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Staff::HomeController < ApplicationController
+class Staff::HomeController < Staff::ApplicationController
   def index; end
 end
