@@ -20,6 +20,9 @@ gem 'config'
 gem 'dotenv-rails'
 gem 'draper'
 gem 'bcrypt', '~> 3.1.7'
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
