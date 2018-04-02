@@ -28,4 +28,9 @@ class User < ApplicationRecord
 
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?
+
+  PERMITTED_ATTRIBUTES = %i[
+    gender_id age avator name email phone zip state city street
+    password password_confirmation
+  ].freeze
 end
