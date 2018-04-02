@@ -1,0 +1,9 @@
+- id: 1
+  type: man
+  name: 男性
+- id: 2
+  type: woman
+  name: 女性
+- id: 3
+  type: other
+  name: どちらでもない
