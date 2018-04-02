@@ -15,6 +15,10 @@ gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'active_hash'
+gem 'config'
+gem 'dotenv-rails'
+gem 'draper'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
@@ -31,6 +35,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
+  gem 'annotate'
+  gem 'migration_comments'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
