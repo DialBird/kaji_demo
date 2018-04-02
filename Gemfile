@@ -19,8 +19,8 @@ gem 'active_hash'
 gem 'config'
 gem 'dotenv-rails'
 gem 'draper'
+gem 'bcrypt', '~> 3.1.7'
 # gem 'redis', '~> 4.0'
-# gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do

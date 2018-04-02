@@ -16,7 +16,7 @@ module Kaji2
     config.generators do |g|
       g.stylesheets false
       g.helper false
-      g.decorator true
+      g.decorator false
       g.test_framework :rspec, fixtures: true,
                                view_specs: false,
                                helper_specs: false,
