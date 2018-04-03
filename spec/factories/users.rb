@@ -24,6 +24,12 @@
 
 FactoryBot.define do
   factory :user do
-    name 'MyString'
+    gender Gender::MAN
+    age 24
+    sequence(:name) { |n| "#{n}Keisuke" }
+    sequence(:email) { |n| "keisuke#{n}@example.com" }
+    sequence(:phone) { |n| "080-1234-#{5678 - n}" }
+    password 'Abcd1234'
+    password_confirmation 'Abcd1234'
   end
 end

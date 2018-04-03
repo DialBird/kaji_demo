@@ -28,9 +28,24 @@ class User < ApplicationRecord
 
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?
+  attr_accessor :remember_token
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age avator name email phone zip state city street
     password password_confirmation
   ].freeze
+
+  before_save { email.downcase! }
+
+  validates :gender_id, inclusion: { in: Gender.all.map(&:id) }
+  validates :age, presence: true,
+                  numericality: { only_integer: true, greater_than: 0 }
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, mail_format: true, uniqueness: true
+  validates :phone, presence: true, phone_format: true, uniqueness: true
+  validates :zip, zip_format: true
+  validates :password, presence: true,
+                       format: { with: Settings.password_format },
+                       confirmation: true,
+                       on: :create
 end
