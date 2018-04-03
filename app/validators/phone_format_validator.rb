@@ -3,6 +3,6 @@
 class PhoneFormatValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return unless value && value !~ Settings.phone_format
-    record.errors[attribute] << (options[:message] || I18n.t('validators.format'))
+    record.errors[attribute] << (options[:message] || I18n.t('errors.messages.phone_format'))
   end
 end
