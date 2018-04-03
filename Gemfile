@@ -23,6 +23,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'carrierwave'
+gem 'rmagick'
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
