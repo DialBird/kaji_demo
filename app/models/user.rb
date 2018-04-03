@@ -45,10 +45,7 @@ class User < ApplicationRecord
   validates :email, presence: true, mail_format: true, uniqueness: true
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validates :zip, zip_format: true
-  validates :password, presence: true,
-                       format: { with: Settings.password_format },
-                       confirmation: true,
-                       on: :create
+  validate :valid_password_format?
 
   class << self
     def new_token
@@ -72,5 +69,14 @@ class User < ApplicationRecord
 
   def forget
     update(remember_digest: nil)
+  end
+
+  private
+
+  def valid_password_format?
+    return true if password.blank?
+    return true if password =~ Settings.password_format
+    errors.add(:password, :invalid_password)
+    false
   end
 end
