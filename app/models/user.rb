@@ -25,6 +25,7 @@
 class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :gender
+  mount_uploader :avatar, AvatarUploader
 
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?

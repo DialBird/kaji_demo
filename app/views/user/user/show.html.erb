@@ -1,2 +1,19 @@
-<h1>User::User#show</h1>
-<p>Find me in app/views/user/user/show.html.erb</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      Profile
+    </h2>
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-left">
+        <%= image_tag current_user.avatar_url, size: '150x150', alt: 'profile-image', class: 'media-object img-circle' %>
+      </div>
+      <div class="media-body">
+        <h2 class="media-heading"><%= current_user.name %></h2>
+        <%= link_to 'Edit', user_edit_path(current_user), class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</div>
