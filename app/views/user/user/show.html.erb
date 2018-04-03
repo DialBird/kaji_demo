@@ -15,5 +15,46 @@
         <%= link_to 'Edit', user_edit_path(current_user), class: 'btn btn-success' %>
       </div>
     </div>
+
+    <hr>
+
+    <table class="table table-striped short">
+      <tr>
+        <th>Gender</th>
+        <td><%= current_user.gender.name %></td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <td><%= current_user.age %></td>
+      </tr>
+      <tr>
+        <th>Birthday</th>
+        <td><%= current_user.birthday %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= current_user.phone %></td>
+      </tr>
+      <tr>
+        <th>Zip</th>
+        <td><%= current_user.zip %></td>
+      </tr>
+      <tr>
+        <th>State</th>
+        <td><%= current_user.state %></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td><%= current_user.city %></td>
+      </tr>
+      <tr>
+        <th>Street</th>
+        <td><%= current_user.street %></td>
+      </tr>
+    </table>
   </div>
 </div>
