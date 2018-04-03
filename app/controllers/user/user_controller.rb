@@ -7,7 +7,7 @@ class User::UserController < User::ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to user_account_path(@user), success: t(:update, scope: 'success.messages')
+      redirect_to user_account_path, success: t(:update, scope: 'success.messages')
     else
       flash.now[:danger] = t(:update, scope: 'errors.messages')
       render :edit
