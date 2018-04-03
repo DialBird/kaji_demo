@@ -61,7 +61,7 @@
       <div class="form-group">
         <%= f.label :birthday, class: 'col-sm-3 control-label' %>
         <div class="col-sm-9">
-          <%= f.text_field :birthday, class: 'form-control' %>
+          <%= f.text_field :birthday, class: 'form-control', data: { provide: 'datepicker', 'date-format' => 'yyyy/mm/dd' } %>
         </div>
       </div>
       <div class="form-group">
