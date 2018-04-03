@@ -32,7 +32,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   PERMITTED_ATTRIBUTES = %i[
-    gender_id age avator name email phone zip state city street
+    gender_id age avatar name email phone zip state city street
     password password_confirmation
   ].freeze
 
