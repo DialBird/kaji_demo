@@ -48,4 +48,28 @@ class User < ApplicationRecord
                        format: { with: Settings.password_format },
                        confirmation: true,
                        on: :create
+
+  class << self
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
+  end
+
+  def authenticated?(token)
+    BCrypt::Password.new(remember_digest).is_password?(token)
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    update(remember_digest: User.digest(remember_token))
+  end
+
+  def forget
+    update(remember_digest: nil)
+  end
 end
