@@ -110,6 +110,7 @@ ja:
     messages:
       login: ログインに成功しました
       logout: ログアウトに成功しました
+      update: 更新しました
   errors:
     format: "%{attribute}%{message}"
     messages:
@@ -136,6 +137,7 @@ ja:
       taken: はすでに存在します
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
+      update: 更新に失敗しました
       wrong_length: は%{count}文字で入力してください
       other_than: は%{count}以外の値にしてください
     template:
