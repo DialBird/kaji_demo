@@ -1,1 +1,5 @@
+email_format: !ruby/regexp /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 password_format: !ruby/regexp /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+# 参考にした正規表現: https://github.com/sakatam/a-better-jp-phone-regex
+phone_format: !ruby/regexp /\A(0([1-9]{1}-?[1-9]\d{3}|[1-9]{2}-?\d{3}|[1-9]{2}\d{1}-?\d{2}|[1-9]{2}\d{2}-?\d{1})-?\d{4}|0[789]0-?\d{4}-?\d{4}|050-?\d{4}-?\d{4})\z/
+zip_format: !ruby/regexp /\A[0-9]{7}\z/
