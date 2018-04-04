@@ -29,7 +29,14 @@ FactoryBot.define do
     sequence(:name) { |n| "#{n}Keisuke" }
     sequence(:email) { |n| "keisuke#{n}@example.com" }
     sequence(:phone) { |n| "080-1234-#{5678 - n}" }
-    password 'Abcd1234'
-    password_confirmation 'Abcd1234'
+
+    transient do
+      pass 'Abcd1234'
+    end
+
+    after(:build) do |user, evaluator|
+      user.password = evaluator.pass
+      user.password_confirmation = evaluator.pass
+    end
   end
 end
