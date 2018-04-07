@@ -23,6 +23,19 @@
 
 FactoryBot.define do
   factory :staff do
-    name 'MyString'
+    gender Gender::MAN
+    age 24
+    sequence(:name) { |n| "#{n}Keisuke" }
+    sequence(:email) { |n| "keisuke#{n}@example.com" }
+    sequence(:phone) { |n| "080-1234-#{5678 - n}" }
+
+    transient do
+      pass 'Abcd1234'
+    end
+
+    after(:build) do |staff, evaluator|
+      staff.password = evaluator.pass
+      staff.password_confirmation = evaluator.pass
+    end
   end
 end

@@ -83,4 +83,84 @@ RSpec.describe SessionsHelper do
       end
     end
   end
+  describe 'staff' do
+    let(:token) { SecureRandom.urlsafe_base64 }
+    let!(:staff) { FactoryBot.create(:staff, remember_digest: Staff.digest(token)) }
+
+    describe '#current_staff' do
+      subject { current_staff }
+
+      context 'when session staff_id exist' do
+        before { session[:staff_id] = staff.id }
+        it 'return staff' do
+          is_expected.to eq staff
+        end
+      end
+      context 'when session staff_id empty' do
+        before do
+          cookies.signed[:staff_id] = staff.id
+          cookies[:staff_token] = remember_token
+        end
+        let(:remember_token) { token }
+
+        it 'set session staff_id' do
+          expect { subject }.to change { session[:staff_id] }.from(nil).to(staff.id)
+        end
+        describe 'remember_token status' do
+          context 'when valid remember_token' do
+            it 'return staff' do
+              is_expected.to eq staff
+            end
+          end
+          context 'when invalid remember_token' do
+            let(:remember_token) { SecureRandom.urlsafe_base64 }
+            it 'return nil' do
+              is_expected.to be_nil
+            end
+          end
+          context 'remember_token is empty' do
+            let(:remember_token) { nil }
+            it 'return nil' do
+              is_expected.to be_nil
+            end
+          end
+        end
+      end
+    end
+    describe '#staff_log_in' do
+      subject { staff_log_in(staff) }
+
+      describe 'session' do
+        it 'set session staff_id' do
+          expect { subject }.to change { session[:staff_id] }.from(nil).to(staff.id)
+        end
+      end
+      describe 'cookie' do
+        it 'set cookie staff_id' do
+          expect { subject }.to change { cookies.signed[:staff_id] }.from(nil).to(staff.id)
+        end
+        it 'set cookie remember_token' do
+          expect { subject }.to change { cookies[:staff_token].present? }.from(false).to(true)
+        end
+      end
+    end
+    describe '#staff_log_out' do
+      before { staff_log_in(staff) }
+      subject { staff_log_out }
+
+      describe 'session' do
+        it 'reset session staff_id' do
+          expect { subject }.to change { session[:staff_id] }.from(staff.id).to(nil)
+        end
+      end
+      describe 'cookie' do
+        it 'reset cookie staff_id' do
+          expect { subject }.to change { cookies.signed[:staff_id] }.from(staff.id).to(nil)
+        end
+        it 'reset cookie remember_token' do
+          expect { subject }.to change { cookies[:staff_token].present? }.from(true).to(false)
+        end
+      end
+    end
+  end
 end
