@@ -2,21 +2,21 @@
 
 require 'rails_helper'
 
-RSpec.describe Staff::HomeController, type: :controller do
+RSpec.describe Staff::StaffController, type: :controller do
   let!(:staff) { FactoryBot.create(:staff) }
 
-  describe 'GET #index' do
+  describe 'GET #show' do
     context 'when staff logged in' do
       before { staff_log_in staff }
 
-      it 'render index' do
-        get :index
-        expect(response).to render_template :index
+      it 'render show' do
+        get :show
+        expect(response).to render_template :show
       end
     end
     context 'when staff logged out' do
       it 'redirect to login path' do
-        get :index
+        get :show
         expect(response).to redirect_to staff_login_path
       end
     end
