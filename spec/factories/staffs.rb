@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: staffs # 家事代行スタッフ
@@ -21,6 +23,6 @@
 
 FactoryBot.define do
   factory :staff do
-    name "MyString"
+    name 'MyString'
   end
 end
