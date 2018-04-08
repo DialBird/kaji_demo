@@ -1,2 +1,57 @@
-<h1>Staff::Staff#show</h1>
-<p>Find me in app/views/staff/staff/show.html.erb</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      Profile
+    </h2>
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-body">
+        <h2 class="media-heading"><%= current_staff.name %></h2>
+        <%= link_to 'Edit', staff_edit_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+
+    <hr>
+
+    <table class="table table-striped short">
+      <tr>
+        <th>Gender</th>
+        <td><%= current_staff.gender.name %></td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <td><%= current_staff.age %></td>
+      </tr>
+      <tr>
+        <th>Birthday</th>
+        <td><%= current_staff.birthday %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= current_staff.email %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= current_staff.phone %></td>
+      </tr>
+      <tr>
+        <th>Zip</th>
+        <td><%= current_staff.zip %></td>
+      </tr>
+      <tr>
+        <th>State</th>
+        <td><%= current_staff.state %></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td><%= current_staff.city %></td>
+      </tr>
+      <tr>
+        <th>Street</th>
+        <td><%= current_staff.street %></td>
+      </tr>
+    </table>
+  </div>
+</div>
