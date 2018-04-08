@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407020327) do
+ActiveRecord::Schema.define(version: 20180408113249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "operators", force: :cascade, comment: "オペレーター" do |t|
+    t.boolean "is_admin", default: false, null: false, comment: "管理者権限"
+    t.string "name", null: false, comment: "名前"
+    t.string "email", null: false, comment: "メール"
+    t.string "phone", null: false, comment: "電話番号"
+    t.string "password_digest"
+    t.string "remember_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_operators_on_email", unique: true
+    t.index ["name"], name: "index_operators_on_name", unique: true
+  end
 
   create_table "staffs", force: :cascade, comment: "家事代行スタッフ" do |t|
     t.integer "gender_id", null: false, comment: "性別(gender.yml参照)"
