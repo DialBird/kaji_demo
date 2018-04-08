@@ -3,6 +3,7 @@
 class Operator::ApplicationController < ApplicationController
   http_basic_authenticate_with name: ENV['BASIC_USERNAME'], password: ENV['BASIC_PASSWORD']
   layout 'operator_layout'
+  include Operator::SessionsHelper
 
   before_action :authenticate_operator?
 end

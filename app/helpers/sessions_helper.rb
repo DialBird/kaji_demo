@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SessionsHelper
-  LOGIN_TYPE = %w[user staff operator].freeze
+  LOGIN_TYPE = %w[user staff].freeze
 
   LOGIN_TYPE.each do |type|
     define_method :"current_#{type}" do
