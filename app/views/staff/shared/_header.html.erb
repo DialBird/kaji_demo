@@ -9,5 +9,23 @@
       </button>
       <%= link_to 'Staff Top', staff_root_path, class: 'navbar-brand' %>
     </div>
+    <% if staff_logged_in? %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do %>
+            Settings <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to staff_account_path do %>
+                <%= fa_icon 'check', class: 'invisible' %> Account
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Log Out', staff_logout_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
   </div>
 </header>
