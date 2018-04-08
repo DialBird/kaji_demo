@@ -18,6 +18,7 @@
 class Operator < ApplicationRecord
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?
+  attr_accessor :remember_token
 
   PERMITTED_ATTRIBUTES = %i[
     is_admin name email phone password password_confirmation
@@ -30,6 +31,30 @@ class Operator < ApplicationRecord
   validates :email, presence: true, mail_format: true, uniqueness: true
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validate :valid_password_format?
+
+  class << self
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
+  end
+
+  def authenticated?(token)
+    BCrypt::Password.new(remember_digest).is_password?(token)
+  end
+
+  def remember
+    self.remember_token = Operator.new_token
+    update(remember_digest: Operator.digest(remember_token))
+  end
+
+  def forget
+    update(remember_digest: nil)
+  end
 
   private
 
