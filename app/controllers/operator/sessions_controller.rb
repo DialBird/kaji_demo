@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Operator::SessionsController < ApplicationController
+class Operator::SessionsController < Operator::ApplicationController
   def new; end
 end
