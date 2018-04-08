@@ -22,4 +22,21 @@ class Operator < ApplicationRecord
   PERMITTED_ATTRIBUTES = %i[
     is_admin name email phone password password_confirmation
   ].freeze
+
+  before_save { email.downcase! }
+
+  validates :is_admin, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, mail_format: true, uniqueness: true
+  validates :phone, presence: true, phone_format: true, uniqueness: true
+  validate :valid_password_format?
+
+  private
+
+  def valid_password_format?
+    return true if password.blank?
+    return true if password =~ Settings.password_format
+    errors.add(:password, :invalid_password)
+    false
+  end
 end
