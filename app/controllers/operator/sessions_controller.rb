@@ -18,6 +18,6 @@ class Operator::SessionsController < Operator::ApplicationController
 
   def destroy
     operator_log_out
-    redirect_to root_path, success: t(:logout, scope: 'success.messages')
+    redirect_to operator_login_path, success: t(:logout, scope: 'success.messages')
   end
 end

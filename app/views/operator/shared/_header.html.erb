@@ -10,7 +10,11 @@
       <%= link_to 'Operator Top', operator_root_path, class: 'navbar-brand' %>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to 'Login', operator_login_path %></li>
+      <% if operator_logged_in? %>
+        <li><%= link_to 'Logout', operator_logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Login', operator_login_path %></li>
+      <% end %>
     </ul>
   </div>
 </header>
