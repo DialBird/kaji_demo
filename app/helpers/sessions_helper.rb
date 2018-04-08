@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module SessionsHelper
-  %w[user staff].each do |type|
+  LOGIN_TYPE = %w[user staff].freeze
+
+  LOGIN_TYPE.each do |type|
     define_method :"current_#{type}" do
       klass = Object.const_get(type.capitalize)
       if (id = session[:"#{type}_id"])
@@ -39,7 +41,7 @@ module SessionsHelper
 
   private
 
-  %w[user staff].each do |type|
+  LOGIN_TYPE.each do |type|
     define_method :"#{type}_remember" do |target|
       target.send(:remember)
       cookies.permanent.signed[:"#{type}_id"] = target.id
