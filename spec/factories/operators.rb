@@ -17,6 +17,18 @@
 
 FactoryBot.define do
   factory :operator do
-    name 'MyString'
+    is_admin true
+    sequence(:name) { |n| "#{n}Keisuke" }
+    sequence(:email) { |n| "keisuke#{n}@example.com" }
+    sequence(:phone) { |n| "080-1234-#{5678 - n}" }
+
+    transient do
+      pass 'Abcd1234'
+    end
+
+    after(:build) do |operator, evaluator|
+      operator.password = evaluator.pass
+      operator.password_confirmation = evaluator.pass
+    end
   end
 end

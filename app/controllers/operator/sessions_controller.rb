@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Operator::SessionsController < Operator::ApplicationController
+  skip_before_action :authenticate_operator?
+
   def new; end
 
   def create
