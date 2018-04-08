@@ -18,4 +18,8 @@
 class Operator < ApplicationRecord
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?
+
+  PERMITTED_ATTRIBUTES = %i[
+    is_admin name email phone password password_confirmation
+  ].freeze
 end
