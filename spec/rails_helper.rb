@@ -55,5 +55,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include ::SessionsHelper
+  config.include Operator::SessionsHelper
   config.include AuthHelper
 end
