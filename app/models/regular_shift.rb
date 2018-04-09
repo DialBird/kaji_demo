@@ -25,4 +25,5 @@
 #
 
 class RegularShift < ApplicationRecord
+  belongs_to :staff
 end

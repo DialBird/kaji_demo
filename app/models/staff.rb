@@ -29,6 +29,8 @@ class Staff < ApplicationRecord
   validates_presence_of :password_confirmation, if: :password_digest_changed?
   attr_accessor :remember_token
 
+  has_many :regular_shifts
+
   PERMITTED_ATTRIBUTES = %i[
     gender_id age name birthday email phone zip state city street
     password password_confirmation
