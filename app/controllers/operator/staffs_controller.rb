@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class Operator::StaffsController < Operator::ApplicationController
-  def index; end
+  def index
+    @staffs = Staff.all
+  end
 end
