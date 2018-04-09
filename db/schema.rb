@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408113249) do
+ActiveRecord::Schema.define(version: 20180409100256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(version: 20180408113249) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_operators_on_email", unique: true
     t.index ["name"], name: "index_operators_on_name", unique: true
+  end
+
+  create_table "regular_shifts", force: :cascade, comment: "通常時のシフト" do |t|
+    t.integer "staff_id", null: false, comment: "スタッフID"
+    t.string "mon_start", null: false, comment: "月曜日開始"
+    t.string "mon_end", null: false, comment: "月曜日終了"
+    t.string "tue_start", null: false, comment: "火曜日開始"
+    t.string "tue_end", null: false, comment: "火曜日終了"
+    t.string "wed_start", null: false, comment: "水曜日開始"
+    t.string "wed_end", null: false, comment: "水曜日終了"
+    t.string "thu_start", null: false, comment: "木曜日開始"
+    t.string "thu_end", null: false, comment: "木曜日終了"
+    t.string "fri_start", null: false, comment: "金曜日開始"
+    t.string "fri_end", null: false, comment: "金曜日終了"
+    t.string "sat_start", null: false, comment: "土曜日開始"
+    t.string "sat_end", null: false, comment: "土曜日終了"
+    t.string "sun_start", null: false, comment: "日曜日開始"
+    t.string "sun_end", null: false, comment: "日曜日終了"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "staffs", force: :cascade, comment: "家事代行スタッフ" do |t|
@@ -67,4 +87,5 @@ ActiveRecord::Schema.define(version: 20180408113249) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "regular_shifts", "staffs", name: "regular_shifts_staff_id_fk"
 end

@@ -1,0 +1,2 @@
+class RegularShift < ApplicationRecord
+end
