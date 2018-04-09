@@ -27,8 +27,13 @@
 class RegularShift < ApplicationRecord
   belongs_to :staff
 
-  PERMITTED_ATTRIBUTES = %i[
-    mon_start mon_end tue_start tue_end wed_start wed_end thu_start thu_end
-    fri_start fri_end sat_start sat_end sun_start sun_end
-  ].freeze
+  DAY_OF_WEEKS = %i[mon tue wed thu fri sat sun].freeze
+  PERMITTED_ATTRIBUTES =
+    DAY_OF_WEEKS.map { |day| [:"#{day}_start", :"#{day}_end"] }.flatten
+  TIME_REGEX = /\d{2}:\d{2}/
+
+  DAY_OF_WEEKS.each do |day|
+    validates :"#{day}_start", presence: true, format: { with: TIME_REGEX }
+    validates :"#{day}_end", presence: true, format: { with: TIME_REGEX }
+  end
 end
