@@ -110,6 +110,7 @@ ja:
     messages:
       login: ログインに成功しました
       logout: ログアウトに成功しました
+      create: 作成しました
       update: 更新しました
   errors:
     format: "%{attribute}%{message}"
@@ -118,6 +119,7 @@ ja:
       blank: "%{attribute}を入力してください"
       present: は入力しないでください
       confirmation: PasswordとPasswordConfirmationの入力が一致しません
+      create: 作成に失敗しました
       email_format: 正しいEmailのフォーマットにしてください
       empty: を入力してください
       equal_to: は%{count}にしてください
