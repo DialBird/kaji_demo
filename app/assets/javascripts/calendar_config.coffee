@@ -1,4 +1,10 @@
 $ ->
+  current_days = ->
+    days = []
+    for elem in $('th.fc-day-header')
+      days.push $(elem).data('date')
+    days
+
   renderShifts = ->
     events = $('#calendar').data('events')
     days = current_days()
@@ -7,12 +13,6 @@ $ ->
         start: "#{days[idx]}T#{event.start}",
         end: "#{days[idx]}T#{event.end}"
       })
-
-  current_days = ->
-    days = []
-    for elem in $('th.fc-day-header')
-      days.push $(elem).data('date')
-    days
 
   $('#calendar').fullCalendar({
     themeSystem: 'bootstrap3',
