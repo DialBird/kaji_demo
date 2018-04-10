@@ -1,0 +1,2 @@
+class IrregularOff < ApplicationRecord
+end

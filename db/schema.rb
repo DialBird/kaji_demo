@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409100256) do
+ActiveRecord::Schema.define(version: 20180410105433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "irregular_offs", force: :cascade, comment: "急な休み" do |t|
+    t.integer "staff_id", null: false, comment: "スタッフID"
+    t.datetime "date", null: false, comment: "日付"
+    t.string "start", null: false, comment: "開始時間"
+    t.string "end", null: false, comment: "終了時間"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "operators", force: :cascade, comment: "オペレーター" do |t|
     t.boolean "is_admin", default: false, null: false, comment: "管理者権限"
@@ -87,5 +96,6 @@ ActiveRecord::Schema.define(version: 20180409100256) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "irregular_offs", "staffs", name: "irregular_offs_staff_id_fk"
   add_foreign_key "regular_shifts", "staffs", name: "regular_shifts_staff_id_fk"
 end
