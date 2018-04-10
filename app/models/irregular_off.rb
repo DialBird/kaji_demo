@@ -14,4 +14,5 @@
 #
 
 class IrregularOff < ApplicationRecord
+  belongs_to :staff
 end

@@ -31,6 +31,7 @@ class Staff < ApplicationRecord
 
   has_one :regular_shift, dependent: :destroy, inverse_of: :staff
   accepts_nested_attributes_for :regular_shift, allow_destroy: true
+  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age name birthday email phone zip state city street
