@@ -27,7 +27,7 @@
 class RegularShift < ApplicationRecord
   belongs_to :staff
 
-  DAY_OF_WEEKS = %i[mon tue wed thu fri sat sun].freeze
+  DAY_OF_WEEKS = %i[sun mon tue wed thu fri sat].freeze
   PERMITTED_ATTRIBUTES =
     DAY_OF_WEEKS.map { |day| [:"#{day}_start", :"#{day}_end"] }.flatten
   TIME_REGEX = /\d{2}:\d{2}/
