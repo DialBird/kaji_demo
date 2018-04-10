@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     delete 'logout' => 'sessions#destroy'
 
     resources :staffs
+    resources :irregular_offs, only: %i[create destroy]
   end
 end
