@@ -15,4 +15,6 @@
 
 class IrregularOff < ApplicationRecord
   belongs_to :staff
+
+  PERMITTED_ATTRIBUTES = %i[date start end].freeze
 end
