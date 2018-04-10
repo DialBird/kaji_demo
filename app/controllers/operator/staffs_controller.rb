@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Operator::StaffsController < Operator::ApplicationController
+  before_action :setup_staff!, only: %i[show].freeze
+
   def index
     @staffs = Staff.all
   end
 
-  def show
-    @staff = Staff.find(params[:id])
-  end
+  def show; end
 
   def new
     @staff = Staff.new
@@ -24,6 +24,10 @@ class Operator::StaffsController < Operator::ApplicationController
   end
 
   private
+
+  def setup_staff!
+    @staff = Staff.find(params[:id])
+  end
 
   def staff_params
     params
