@@ -16,7 +16,7 @@
   <tbody>
     <% @staffs.each do |staff| %>
       <tr>
-        <td><%= gender_label(staff.gender) %> <%= staff.name %></td>
+        <td><%= gender_label(staff.gender) %> <%= link_to staff.name, operator_staff_path(staff) %></td>
         <td><%= staff.age %></td>
         <td><%= staff.email %></td>
         <td><%= staff.phone %></td>

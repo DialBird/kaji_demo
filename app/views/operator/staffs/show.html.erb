@@ -1,1 +1,2 @@
 <h1 class="page-header"><%= @staff.name %></h1>
+<div id="calendar" data-events="<%= @staff.regular_shift.shifts.to_json %>"></div>
