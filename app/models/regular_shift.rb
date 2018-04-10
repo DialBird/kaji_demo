@@ -36,4 +36,10 @@ class RegularShift < ApplicationRecord
     validates :"#{day}_start", presence: true, format: { with: TIME_REGEX }
     validates :"#{day}_end", presence: true, format: { with: TIME_REGEX }
   end
+
+  def shifts
+    DAY_OF_WEEKS.map do |day|
+      { start: send(:"#{day}_start"), end: send(:"#{day}_end") }
+    end
+  end
 end
