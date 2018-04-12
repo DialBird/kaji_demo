@@ -48,4 +48,4 @@
     </table>
   </div>
 </div>
-<%= content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shift.shifts.to_json, offs: @staff.irregular_offs_json }%>
+<%= content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shifts_json, offs: @staff.irregular_offs_json }%>
