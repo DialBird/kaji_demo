@@ -29,8 +29,8 @@ class Staff < ApplicationRecord
   validates_presence_of :password_confirmation, if: :password_digest_changed?
   attr_accessor :remember_token
 
-  has_one :regular_shift, dependent: :destroy, inverse_of: :staff
-  accepts_nested_attributes_for :regular_shift, allow_destroy: true
+  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
   has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
 
   PERMITTED_ATTRIBUTES = %i[
