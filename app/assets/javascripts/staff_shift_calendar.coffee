@@ -8,7 +8,7 @@ $ ->
   renderIrregularOffs = ->
     events = $('#calendar').data('offs')
     for event in events
-      date = event.date.slice(0, 10)
+      date = event.date
       $('#calendar').fullCalendar('renderEvent', {
         title: 'off',
         start: "#{date}T#{event.start}",
