@@ -1,14 +1,21 @@
 - id: 1
   type: sun
+  name: Sunday
 - id: 2
   type: mon
+  name: Monday
 - id: 3
   type: tue
+  name: Tuesday
 - id: 4
   type: wed
+  name: Wednesday
 - id: 5
   type: thu
+  name: Thursday
 - id: 6
   type: fri
+  name: Friday
 - id: 7
   type: sat
+  name: Saturdayday
