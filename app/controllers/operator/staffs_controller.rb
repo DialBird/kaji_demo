@@ -11,6 +11,9 @@ class Operator::StaffsController < Operator::ApplicationController
 
   def new
     @staff = Staff.new
+    Dayofweek.all.pluck(:id).each do |id|
+      @staff.regular_shifts.build(dayofweek_id: id)
+    end
   end
 
   def create
@@ -33,6 +36,6 @@ class Operator::StaffsController < Operator::ApplicationController
     params
       .require(:staff)
       .permit([*Staff::PERMITTED_ATTRIBUTES,
-               regular_shift_attributes: RegularShift::PERMITTED_ATTRIBUTES])
+               regular_shifts_attributes: RegularShift::PERMITTED_ATTRIBUTES])
   end
 end

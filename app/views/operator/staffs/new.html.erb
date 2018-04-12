@@ -95,18 +95,24 @@
       </h2>
     </div>
     <div class="panel-body">
-      <%= f.fields_for :regular_shift, @staff.regular_shift || RegularShift.new do |rs_f| %>
-        <% RegularShift::DAY_OF_WEEKS.each do |day| %>
-          <div class="form-group">
-            <%= rs_f.label :"#{day}", class: 'col-sm-3 control-label' %>
-            <div class="col-sm-3">
-              <%= rs_f.select :"#{day}_start", ShiftTime.all.map { |st| [st.time, st.time] }, { prompt: '-- Select From Time --' }, class: 'form-control' %>
-            </div>
-            <div class="col-sm-3">
-              <%= rs_f.select :"#{day}_end", ShiftTime.all.map { |st| [st.time, st.time] }, { prompt: '-- Select To Time --' }, class: 'form-control' %>
+      <%= f.fields_for :regular_shifts do |rs_f| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title"><%= rs_f.object.dayofweek.name %></h2>
+            <%= rs_f.hidden_field :dayofweek_id %>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <%= rs_f.label :times, class: 'col-sm-3 control-label' %>
+              <div class="col-sm-3">
+                <%= rs_f.collection_select :start, ShiftTime.all, :time, :time, { selected: '10:00' }, class: 'form-control' %>
+              </div>
+              <div class="col-sm-3">
+                <%= rs_f.collection_select :end, ShiftTime.all, :time, :time, { selected: '19:00' }, class: 'form-control' %>
+              </div>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
   </div>
