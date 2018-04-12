@@ -7,7 +7,12 @@ class StaffDecorator < Draper::Decorator
     # shifts should be listed from Sunday to Saturday
     regular_shifts
       .order(:dayofweek_id)
-      .to_json(only: %i[dayofweek start end].freeze)
+      .map do |rs|
+        {
+          start: TimeBlock.find(rs.start_at).time,
+          end: TimeBlock.find(rs.end_at).time
+        }
+      end
   end
 
   def irregular_offs_json

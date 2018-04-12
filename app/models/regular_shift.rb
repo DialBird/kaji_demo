@@ -18,11 +18,10 @@ class RegularShift < ApplicationRecord
   belongs_to_active_hash :dayofweek
   belongs_to :staff
 
-  PERMITTED_ATTRIBUTES = %i[dayofweek_id start end].freeze
-  TIME_REGEX = /\d{2}:\d{2}/
+  PERMITTED_ATTRIBUTES = %i[dayofweek_id start_at end_at].freeze
 
   validates :dayofweek_id, inclusion: { in: Dayofweek.all.map(&:id) },
                            uniqueness: { scope: :staff_id, message: '同じ曜日が複数個存在しています' }
-  validates :start, presence: true, format: { with: TIME_REGEX }
-  validates :end, presence: true, format: { with: TIME_REGEX }
+  validates :start_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
+  validates :end_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
 end
