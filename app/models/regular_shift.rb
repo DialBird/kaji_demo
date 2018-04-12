@@ -14,6 +14,9 @@
 #
 
 class RegularShift < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
+  belongs_to_active_hash :dayofweek
   belongs_to :staff
 
   PERMITTED_ATTRIBUTES = %i[dayofweek_id start end].freeze
