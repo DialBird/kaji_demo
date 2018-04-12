@@ -16,6 +16,13 @@ class StaffDecorator < Draper::Decorator
   end
 
   def irregular_offs_json
-    irregular_offs.to_json(only: %i[date start end].freeze)
+    irregular_offs
+      .map do |io|
+        {
+          date: io.date,
+          start: TimeBlock.find(io.start_at).time,
+          end: TimeBlock.find(io.end_at).time
+        }
+      end
   end
 end

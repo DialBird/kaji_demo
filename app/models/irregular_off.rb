@@ -16,10 +16,9 @@
 class IrregularOff < ApplicationRecord
   belongs_to :staff
 
-  PERMITTED_ATTRIBUTES = %i[staff_id date start end].freeze
-  TIME_REGEX = /\d{2}:\d{2}/
+  PERMITTED_ATTRIBUTES = %i[staff_id date start_id end_id].freeze
 
   validates :date, presence: true
-  validates :start, presence: true, format: { with: TIME_REGEX }
-  validates :end, presence: true, format: { with: TIME_REGEX }
+  validates :start_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
+  validates :end_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
 end
