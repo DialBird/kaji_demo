@@ -1,0 +1,14 @@
+- id: 1
+  type: sun
+- id: 2
+  type: mon
+- id: 3
+  type: tue
+- id: 4
+  type: wed
+- id: 5
+  type: thu
+- id: 6
+  type: fri
+- id: 7
+  type: sat
