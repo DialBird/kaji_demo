@@ -3,7 +3,7 @@
 User.create(gender_id: Gender::MAN.id,
             age: 18,
             name: 'User_A',
-            birthday: Time.parse('2000/11/11'),
+            birthday: '2000/11/11',
             email: 'a@co.jp',
             phone: '080-1234-5678',
             zip: '1600022',
