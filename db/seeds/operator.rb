@@ -2,7 +2,7 @@
 
 Operator.create(is_admin: true,
                 name: 'TestOperator',
-                email: 'c@co.jp',
+                email: 'a@co.jp',
                 phone: '080-1234-5678',
-                password: '1234Abcd',
-                password_confirmation: '1234Abcd')
+                password: 'Pass1234',
+                password_confirmation: 'Pass1234')

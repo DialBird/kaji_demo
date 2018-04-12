@@ -2,7 +2,7 @@
 
 User.create(gender_id: Gender::MAN.id,
             age: 18,
-            name: 'TestUser',
+            name: 'User_A',
             birthday: Time.parse('2000/11/11'),
             email: 'a@co.jp',
             phone: '080-1234-5678',
@@ -10,5 +10,5 @@ User.create(gender_id: Gender::MAN.id,
             state: 'Tokyo',
             city: 'Shinjuku-Ku',
             street: 'Yotuya-Saka-Machi',
-            password: '1234Abcd',
-            password_confirmation: '1234Abcd')
+            password: 'Pass1234',
+            password_confirmation: 'Pass1234')
