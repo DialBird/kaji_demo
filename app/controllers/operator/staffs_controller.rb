@@ -26,7 +26,7 @@ class Operator::StaffsController < Operator::ApplicationController
   private
 
   def setup_staff!
-    @staff = Staff.find(params[:id])
+    @staff = Staff.find(params[:id]).decorate
   end
 
   def staff_params
