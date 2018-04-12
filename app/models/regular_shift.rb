@@ -16,19 +16,10 @@
 class RegularShift < ApplicationRecord
   belongs_to :staff
 
-  DAY_OF_WEEKS = %i[sun mon tue wed thu fri sat].freeze
-  PERMITTED_ATTRIBUTES =
-    DAY_OF_WEEKS.map { |day| [:"#{day}_start", :"#{day}_end"] }.flatten
+  PERMITTED_ATTRIBUTES = %i[dayofweek_id start end].freeze
   TIME_REGEX = /\d{2}:\d{2}/
 
-  DAY_OF_WEEKS.each do |day|
-    validates :"#{day}_start", presence: true, format: { with: TIME_REGEX }
-    validates :"#{day}_end", presence: true, format: { with: TIME_REGEX }
-  end
-
-  def shifts
-    DAY_OF_WEEKS.map do |day|
-      { start: send(:"#{day}_start"), end: send(:"#{day}_end") }
-    end
-  end
+  validates :dayofweek_id, inclusion: { in: Dayofweek.all.map(&:id) }
+  validates :start, presence: true, format: { with: TIME_REGEX }
+  validates :end, presence: true, format: { with: TIME_REGEX }
 end
