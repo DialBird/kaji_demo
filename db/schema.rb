@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412021420) do
+ActiveRecord::Schema.define(version: 20180412075413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20180412021420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "dayofweek_id", default: 0, null: false, comment: "曜日（day_of_week.yml参照）"
-    t.string "start", default: "00:00", null: false, comment: "開始時刻（HH:MM）"
-    t.string "end", default: "00:00", null: false, comment: "終了時刻（HH:MM）"
+    t.integer "start_at", default: 0, null: false, comment: "開始時刻（time_block.yml参照）"
+    t.integer "end_at", default: 0, null: false, comment: "開始時刻（time_block.yml参照）"
   end
 
   create_table "staffs", force: :cascade, comment: "家事代行スタッフ" do |t|
