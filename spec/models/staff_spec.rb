@@ -8,7 +8,7 @@
 #  gender_id       :integer          not null              # 性別(gender.yml参照)
 #  age             :integer          not null              # 年齢
 #  name            :string           not null              # 名前
-#  birthday        :datetime                               # 誕生日
+#  birthday        :date                                   # 誕生日
 #  email           :string           not null              # メール
 #  phone           :string           not null              # 電話番号
 #  zip             :string                                 # 郵便番号

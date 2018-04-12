@@ -6,9 +6,9 @@
 #
 #  id         :integer          not null, primary key
 #  staff_id   :integer          not null              # スタッフID
-#  date       :datetime         not null              # 日付
-#  start      :string           not null              # 開始時間
-#  end        :string           not null              # 終了時間
+#  date       :date             not null              # 日付
+#  start_at   :integer          not null              # 開始時間（time_block.yml参照）
+#  end_at     :integer          not null              # 終了時間（time_block.yml参照）
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

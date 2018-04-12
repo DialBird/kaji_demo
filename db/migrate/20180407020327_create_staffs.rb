@@ -4,7 +4,7 @@ class CreateStaffs < ActiveRecord::Migration[5.1]
       t.integer :gender_id, null: false, comment: '性別(gender.yml参照)'
       t.integer :age, null: false, comment: '年齢'
       t.string :name, null: false, comment: '名前'
-      t.datetime :birthday, comment: '誕生日'
+      t.date :birthday, comment: '誕生日'
       t.string :email, null: false, comment: 'メール'
       t.string :phone, null: false, comment: '電話番号'
       t.string :zip, comment: '郵便番号'
