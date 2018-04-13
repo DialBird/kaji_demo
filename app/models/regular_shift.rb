@@ -23,6 +23,6 @@ class RegularShift < ApplicationRecord
 
   validates :dayofweek_id, inclusion: { in: Dayofweek.all.map(&:id) },
                            uniqueness: { scope: :staff_id, message: '同じ曜日が複数個存在しています' }
-  validates :start_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
-  validates :end_at, presence: true, inclusion: { in: TimeBlock.all.map(&:id) }
+  validates :start_at, presence: true, inclusion: { in: ShiftTime.all.map(&:id) }
+  validates :end_at, presence: true, inclusion: { in: ShiftTime.all.map(&:id) }
 end

@@ -9,8 +9,8 @@ class StaffDecorator < Draper::Decorator
       .order(:dayofweek_id)
       .map do |rs|
         {
-          start: TimeBlock.find(rs.start_at).time,
-          end: TimeBlock.find(rs.end_at).time
+          start: ShiftTime.find(rs.start_at).time,
+          end: ShiftTime.find(rs.end_at).time
         }
       end
   end
@@ -20,8 +20,8 @@ class StaffDecorator < Draper::Decorator
       .map do |io|
         {
           date: io.date,
-          start: TimeBlock.find(io.start_at).time,
-          end: TimeBlock.find(io.end_at).time
+          start: ShiftTime.find(io.start_at).time,
+          end: ShiftTime.find(io.end_at).time
         }
       end
   end
