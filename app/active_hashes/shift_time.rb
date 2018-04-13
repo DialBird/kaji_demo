@@ -7,4 +7,10 @@ class ShiftTime < ActiveYaml::Base
   set_filename name.underscore
 
   enum_accessor :type
+
+  class << self
+    def selectable_options
+      all.reject { |item| item.time == '00:00' }
+    end
+  end
 end

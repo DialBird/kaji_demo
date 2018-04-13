@@ -105,10 +105,10 @@
             <div class="form-group">
               <%= rs_f.label :times, class: 'col-sm-3 control-label' %>
               <div class="col-sm-3">
-                <%= rs_f.collection_select :start, ShiftTime.all, :time, :time, { selected: '10:00' }, class: 'form-control' %>
+                <%= rs_f.collection_select :start, ShiftTime.selectable_options, :time, :time, { selected: '10:00' }, class: 'form-control' %>
               </div>
               <div class="col-sm-3">
-                <%= rs_f.collection_select :end, ShiftTime.all, :time, :time, { selected: '19:00' }, class: 'form-control' %>
+                <%= rs_f.collection_select :end, ShiftTime.selectable_options, :time, :time, { selected: '19:00' }, class: 'form-control' %>
               </div>
             </div>
           </div>
