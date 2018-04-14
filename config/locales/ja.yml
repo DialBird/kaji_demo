@@ -139,7 +139,7 @@ ja:
       odd: は奇数にしてください
       phone_format: 正しい電話番号のフォーマットにしてください
       required: を入力してください
-      taken: はすでに存在します
+      taken: "%{attribute}はすでに存在します"
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       update: 更新に失敗しました
