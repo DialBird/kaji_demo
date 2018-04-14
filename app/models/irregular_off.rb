@@ -16,7 +16,7 @@
 class IrregularOff < ApplicationRecord
   belongs_to :staff
 
-  PERMITTED_ATTRIBUTES = %i[staff_id date start_id end_id].freeze
+  PERMITTED_ATTRIBUTES = %i[staff_id date start_at end_at].freeze
 
   validates :date, presence: true
   validates :start_at, presence: true, inclusion: { in: ShiftTime.all.map(&:id) }
