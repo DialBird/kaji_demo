@@ -12,7 +12,8 @@ class Operator::StaffsController < Operator::ApplicationController
   def new
     @staff = Staff.new
     Dayofweek.all.pluck(:id).each do |id|
-      @staff.regular_shifts.build(dayofweek_id: id)
+      # Default 10:00 ~ 19:00
+      @staff.regular_shifts.build(dayofweek_id: id, start_at: 3, end_at: 21)
     end
   end
 
