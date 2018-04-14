@@ -19,7 +19,7 @@ class RegularShift < ApplicationRecord
   belongs_to_active_hash :dayofweek
   belongs_to :staff
 
-  PERMITTED_ATTRIBUTES = %i[dayofweek_id start_at end_at].freeze
+  PERMITTED_ATTRIBUTES = %i[id dayofweek_id start_at end_at].freeze
 
   validates :dayofweek_id, inclusion: { in: Dayofweek.all.map(&:id) },
                            uniqueness: { scope: :staff_id, message: '同じ曜日が複数個存在しています' }
