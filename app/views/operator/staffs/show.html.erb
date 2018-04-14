@@ -50,4 +50,17 @@
     </table>
   </div>
 </div>
+<div class="text-right">
+  <%= link_to 'create', '#modal', class: 'btn btn-warning', data: { toggle: 'modal' } %>
+</div>
 <%= content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shifts_json, offs: @staff.irregular_offs_json }%>
+
+<%# form %>
+
+<%= form_tag info_operator_irregular_offs_path, id: 'refresh-form', method: :get, remote: true do %>
+  <%= submit_tag '', style: 'display: none;' %>
+<% end %>
+<%= form_tag operator_irregular_off_path, id: 'delete-form', method: :delete, remote: true do %>
+  <%= submit_tag '', style: 'display: none;' %>
+<% end %>
+<%= render 'modal', staff: @staff %>
