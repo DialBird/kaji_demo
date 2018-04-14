@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Operator::StaffsController < Operator::ApplicationController
-  before_action :setup_staff!, only: %i[show].freeze
+  before_action :setup_staff!, only: %i[show edit update].freeze
 
   def index
     @staffs = Staff.all
@@ -24,6 +24,17 @@ class Operator::StaffsController < Operator::ApplicationController
     else
       flash[:danger] = t(:create, scope: 'errors.messages')
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @staff.update(staff_params)
+      redirect_to operator_staff_path(@staff), success: t(:update, scope: 'success.messages')
+    else
+      flash[:danger] = t(:update, scope: 'errors.messages')
+      render :edit
     end
   end
 
