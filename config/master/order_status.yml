@@ -2,7 +2,7 @@
   type: checking
   name: 確認中
 - id: 2
-  type: acecpted
+  type: accepted
   name: 受付完了
 - id: 3
   type: completed
