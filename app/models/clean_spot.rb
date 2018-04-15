@@ -12,5 +12,8 @@
 #
 
 class CleanSpot < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
+  belongs_to_active_hash :spot
   belongs_to :clean_order
 end
