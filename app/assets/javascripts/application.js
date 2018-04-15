@@ -3,5 +3,5 @@
 //= require rails-ujs
 //= require bootstrap-datepicker
 //= require lib/moment.min
-//= require lib/fullcalendar
+//= require lib/fullcalendar.min
 //= require main
