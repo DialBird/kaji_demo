@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415002947) do
+ActiveRecord::Schema.define(version: 20180415004838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20180415002947) do
     t.integer "end_at", null: false, comment: "終了時間（time_block.yml参照）"
     t.integer "clean_plan_id", default: 2, null: false, comment: "清掃プラン（clean_plan.yml参照）"
     t.text "note", comment: "備考"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clean_spots", force: :cascade, comment: "清掃箇所" do |t|
+    t.integer "clean_order_id", null: false, comment: "清掃オーダーID"
+    t.integer "clean_spot_id", null: false, comment: "清掃スポットID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,6 +104,7 @@ ActiveRecord::Schema.define(version: 20180415002947) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "clean_spots", "clean_orders", name: "clean_spots_clean_order_id_fk"
   add_foreign_key "irregular_offs", "staffs", name: "irregular_offs_staff_id_fk"
   add_foreign_key "regular_shifts", "staffs", name: "regular_shifts_staff_id_fk"
 end
