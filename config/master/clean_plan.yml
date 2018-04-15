@@ -1,0 +1,9 @@
+- id: 1
+  type: easy
+  name: '簡単'
+- id: 2
+  type: normal
+  name: '普通'
+- id: 3
+  type: hard
+  name: '本格的'
