@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180415004838) do
 
   create_table "clean_spots", force: :cascade, comment: "清掃箇所" do |t|
     t.integer "clean_order_id", null: false, comment: "清掃オーダーID"
-    t.integer "clean_spot_id", null: false, comment: "清掃スポットID"
+    t.integer "spot_id", null: false, comment: "清掃スポットID（spot.yml参照）"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
