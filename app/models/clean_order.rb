@@ -24,6 +24,8 @@ class CleanOrder < ApplicationRecord
   ].freeze
 
   belongs_to_active_hash :clean_plan
+  belongs_to :user
+  belongs_to :staff, optional: true
   has_many :clean_spots, dependent: :destroy, inverse_of: :clean_order
   accepts_nested_attributes_for :clean_spots, allow_destroy: true
 

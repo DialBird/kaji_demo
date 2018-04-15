@@ -23,23 +23,23 @@
 
 class Staff < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :gender
-
-  has_secure_password
-  validates_presence_of :password_confirmation, if: :password_digest_changed?
-  attr_accessor :remember_token
-
-  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
-  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
-  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age name birthday email phone zip state city street
     password password_confirmation
   ].freeze
 
+  attr_accessor :remember_token
   before_save { email.downcase! }
 
+  belongs_to_active_hash :gender
+  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
+  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
+  has_many :clean_orders, dependent: :destroy, inverse_of: :staff
+
+  has_secure_password
+  validates_presence_of :password_confirmation, if: :password_digest_changed?
   validates :gender_id, inclusion: { in: Gender.all.map(&:id) }
   validates :age, presence: true,
                   numericality: { only_integer: true, greater_than: 0 }

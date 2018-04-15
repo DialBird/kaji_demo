@@ -24,20 +24,21 @@
 
 class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :gender
-  mount_uploader :avatar, AvatarUploader
-
-  has_secure_password
-  validates_presence_of :password_confirmation, if: :password_digest_changed?
-  attr_accessor :remember_token
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age avatar name birthday email phone zip state city street
     password password_confirmation
   ].freeze
 
+  mount_uploader :avatar, AvatarUploader
+  attr_accessor :remember_token
   before_save { email.downcase! }
 
+  belongs_to_active_hash :gender
+  has_many :clean_orders, dependent: :destroy, inverse_of: :user
+
+  has_secure_password
+  validates_presence_of :password_confirmation, if: :password_digest_changed?
   validates :gender_id, inclusion: { in: Gender.all.map(&:id) }
   validates :age, presence: true,
                   numericality: { only_integer: true, greater_than: 0 }
