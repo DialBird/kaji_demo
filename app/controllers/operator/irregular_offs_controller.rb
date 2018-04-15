@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Operator::IrregularOffsController < ApplicationController
+class Operator::IrregularOffsController < Operator::ApplicationController
   def info
     irregular_offs = IrregularOff.where(date: params[:dates])
     json = json_format(irregular_offs)
