@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 20180415004838) do
   create_table "clean_orders", force: :cascade, comment: "清掃オーダー" do |t|
     t.integer "user_id", null: false, comment: "ユーザーID"
     t.integer "staff_id", comment: "スタッフID"
+    t.integer "clean_plan_id", default: 2, null: false, comment: "清掃プラン（clean_plan.yml参照）"
+    t.integer "order_status_id", default: 1, null: false, comment: "オーダーステータス（order_status.yml参照）"
     t.date "date", null: false, comment: "日付"
     t.integer "start_at", null: false, comment: "開始時間（time_block.yml参照）"
     t.integer "end_at", null: false, comment: "終了時間（time_block.yml参照）"
-    t.integer "clean_plan_id", default: 2, null: false, comment: "清掃プラン（clean_plan.yml参照）"
     t.text "note", comment: "備考"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
