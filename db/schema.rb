@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410105433) do
+ActiveRecord::Schema.define(version: 20180415002947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clean_orders", force: :cascade, comment: "清掃オーダー" do |t|
+    t.integer "user_id", null: false, comment: "ユーザーID"
+    t.integer "staff_id", null: false, comment: "スタッフID"
+    t.date "date", null: false, comment: "日付"
+    t.integer "start_at", null: false, comment: "開始時間（time_block.yml参照）"
+    t.integer "end_at", null: false, comment: "終了時間（time_block.yml参照）"
+    t.integer "clean_plan_id", default: 2, null: false, comment: "清掃プラン（clean_plan.yml参照）"
+    t.text "note", comment: "備考"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "irregular_offs", force: :cascade, comment: "急な休み" do |t|
     t.integer "staff_id", null: false, comment: "スタッフID"
