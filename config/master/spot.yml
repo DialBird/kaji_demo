@@ -1,0 +1,12 @@
+- id: 1
+  type: toilet
+  name: トイレ
+- id: 2
+  type: living_room
+  name: リビング
+- id: 3
+  type: bathtub
+  name: バスルーム
+- id: 4
+  type: kitchen
+  name: キッチン
