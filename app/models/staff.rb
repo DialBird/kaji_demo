@@ -8,7 +8,7 @@
 #  gender_id       :integer          not null              # 性別(gender.yml参照)
 #  age             :integer          not null              # 年齢
 #  name            :string           not null              # 名前
-#  birthday        :datetime                               # 誕生日
+#  birthday        :date                                   # 誕生日
 #  email           :string           not null              # メール
 #  phone           :string           not null              # 電話番号
 #  zip             :string                                 # 郵便番号
@@ -28,6 +28,10 @@ class Staff < ApplicationRecord
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?
   attr_accessor :remember_token
+
+  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
+  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age name birthday email phone zip state city street

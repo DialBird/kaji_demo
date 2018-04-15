@@ -1,2 +1,19 @@
-<h1>User::Home#index</h1>
-<p>Find me in app/views/user/home/index.html.erb</p>
+<h1 class='page-header'>Welcome to Kaji Service!</h1>
+
+<div class='row mt-25 mb-25'>
+  <div class="col-sm-4 text-center">
+    <%= link_to '#', class: 'btn btn-lg btn-success' do %>
+      <%= fa_icon 'trash', text: 'Clean Order' %>
+    <% end %>
+  </div>
+  <div class="col-sm-4 text-center">
+    <%= link_to '#', class: 'btn btn-lg btn-primary' do %>
+      <%= fa_icon 'book', text: 'Cook Order' %>
+    <% end %>
+  </div>
+  <div class="col-sm-4 text-center">
+    <%= link_to '#', class: 'btn btn-lg btn-warning' do %>
+      <%= fa_icon 'home', text: 'House Clean Order' %>
+    <% end %>
+  </div>
+</div>

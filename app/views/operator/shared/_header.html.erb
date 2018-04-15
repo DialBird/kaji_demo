@@ -9,12 +9,17 @@
       </button>
       <%= link_to 'Operator Top', operator_root_path, class: 'navbar-brand' %>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <% if operator_logged_in? %>
+    <% if operator_logged_in? %>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to 'staffs', operator_staffs_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Logout', operator_logout_path, method: :delete %></li>
-      <% else %>
+      </ul>
+    <% else %>
+      <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Login', operator_login_path %></li>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
   </div>
 </header>
