@@ -35,4 +35,5 @@ class CleanOrder < ApplicationRecord
   validates :start_at, inclusion: { in: ShiftTime.all.map(&:id) }
   validates :end_at, inclusion: { in: ShiftTime.all.map(&:id) }
   validates :clean_plan_id, inclusion: { in: CleanPlan.all.map(&:id) }
+  validates :order_status_id, inclusion: { in: OrderStatus.all.map(&:id) }
 end
