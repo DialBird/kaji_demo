@@ -1,0 +1,26 @@
+<h1 class="page-header">Clean Orders</h1>
+<div class="text-right">
+  <%= link_to 'Add', new_user_clean_order_path, class: 'btn btn-success' %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>status</th>
+      <th>date</th>
+      <th>clean plan</th>
+      <th>start</th>
+      <th>end</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clean_orders.each do |cl_o| %>
+      <tr>
+        <td><%= order_status_label(cl_o) %></td>
+        <td><%= cl_o.date %></td>
+        <td><%= cl_o.clean_plan.name %></td>
+        <td><%= start_time cl_o %></td>
+        <td><%= end_time cl_o %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
