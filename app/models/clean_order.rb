@@ -17,6 +17,9 @@
 #
 
 class CleanOrder < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
+  belongs_to_active_hash :clean_plan
   has_many :clean_spots, dependent: :destroy, inverse_of: :clean_order
   accepts_nested_attributes_for :clean_spots, allow_destroy: true
 end
