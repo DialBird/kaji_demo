@@ -6,7 +6,7 @@
 #
 #  id            :integer          not null, primary key
 #  user_id       :integer          not null              # ユーザーID
-#  staff_id      :integer          not null              # スタッフID
+#  staff_id      :integer                                # スタッフID
 #  date          :date             not null              # 日付
 #  start_at      :integer          not null              # 開始時間（time_block.yml参照）
 #  end_at        :integer          not null              # 終了時間（time_block.yml参照）
