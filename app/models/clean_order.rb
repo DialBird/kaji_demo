@@ -19,7 +19,16 @@
 class CleanOrder < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
+  PERMITTED_ATTRIBUTES = %i[
+    user_id staff_id clean_plan_iddate start_at end_at note
+  ].freeze
+
   belongs_to_active_hash :clean_plan
   has_many :clean_spots, dependent: :destroy, inverse_of: :clean_order
   accepts_nested_attributes_for :clean_spots, allow_destroy: true
+
+  validates :date, presence: true
+  validates :start_at, inclusion: { in: ShiftTime.all.map(&:id) }
+  validates :end_at, inclusion: { in: ShiftTime.all.map(&:id) }
+  validates :clean_plan_id, inclusion: { in: CleanPlan.all.map(&:id) }
 end

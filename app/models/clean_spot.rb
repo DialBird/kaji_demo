@@ -14,6 +14,11 @@
 class CleanSpot < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
+  PERMITTED_ATTRIBUTES = %i[id spot_id].freeze
+
   belongs_to_active_hash :spot
   belongs_to :clean_order
+
+  validates :spot_id, inclusion: { in: Spot.all.map(&:id) },
+                      uniqueness: { scope: :clean_order_id, message: '同じ場所は重複して選べません' }
 end
