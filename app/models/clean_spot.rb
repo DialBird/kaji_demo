@@ -12,4 +12,5 @@
 #
 
 class CleanSpot < ApplicationRecord
+  belongs_to :clean_order
 end
