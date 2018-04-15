@@ -1,0 +1,12 @@
+- id: 1
+  type: checking
+  name: 確認中
+- id: 2
+  type: acecpted
+  name: 受付完了
+- id: 3
+  type: completed
+  name: 業務完了
+- id: 9
+  type: canceled
+  name: キャンセル
