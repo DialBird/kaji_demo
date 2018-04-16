@@ -4,7 +4,7 @@ class User::CleanOrdersController < User::ApplicationController
   before_action :setup_clean_order!, only: %i[show destroy].freeze
 
   def index
-    @clean_orders = current_user.clean_orders
+    @clean_orders = current_user.clean_orders.order(:created_at)
   end
 
   def show; end
