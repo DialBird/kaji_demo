@@ -11,5 +11,6 @@ Rails.application.routes.draw do
         get :info
       end
     end
+    resources :clean_orders
   end
 end
