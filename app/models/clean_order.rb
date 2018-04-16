@@ -21,7 +21,7 @@ class CleanOrder < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   PERMITTED_ATTRIBUTES = %i[
-    user_id staff_id clean_plan_iddate start_at end_at note
+    user_id staff_id clean_plan_id date start_at end_at note
   ].freeze
 
   belongs_to_active_hash :clean_plan
@@ -36,4 +36,12 @@ class CleanOrder < ApplicationRecord
   validates :end_at, inclusion: { in: ShiftTime.all.map(&:id) }
   validates :clean_plan_id, inclusion: { in: CleanPlan.all.map(&:id) }
   validates :order_status_id, inclusion: { in: OrderStatus.all.map(&:id) }
+  validate :valid_times?
+
+  private
+
+  def valid_times?
+    return if start_at < end_at
+    errors.add(:start_at, :invalid_start_and_end)
+  end
 end
