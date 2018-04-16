@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class User::CleanOrdersController < User::ApplicationController
+  before_action :setup_clean_order!, only: %i[show].freeze
+
   def index
     @clean_orders = current_user.clean_orders
   end
+
+  def show; end
 
   def new
     @clean_order = current_user.clean_orders.build(spots: [])
@@ -23,5 +27,9 @@ class User::CleanOrdersController < User::ApplicationController
 
   def clean_order_params
     params.require(:clean_order).permit([*CleanOrder::PERMITTED_ATTRIBUTES, spots: []])
+  end
+
+  def setup_clean_order!
+    @clean_order = CleanOrder.find(params[:id])
   end
 end

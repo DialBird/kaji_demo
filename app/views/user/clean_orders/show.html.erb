@@ -1,0 +1,24 @@
+<h1 class="page-header">Clean Order Detail <%= order_status_label @clean_order %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <%= fa_icon 'sticky-note', text: 'Detail' %>
+    </h2>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal fs-16">
+      <dt>Date</dt>
+      <dd><%= @clean_order.date %></dd>
+      <dt>Start Time</dt>
+      <dd><%= start_time @clean_order %></dd>
+      <dt>End Time</dt>
+      <dd><%= end_time @clean_order %></dd>
+    </dl>
+    <div class="text-center">
+      <%= link_to '#', class: 'btn btn-danger' do %>
+        <%= fa_icon 'ban', text: 'Cancel' %>
+      <% end %>
+    </div>
+  </div>
+</div>
