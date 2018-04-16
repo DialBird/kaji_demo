@@ -24,6 +24,8 @@ class CleanOrder < ApplicationRecord
     user_id staff_id clean_plan_id date start_at end_at note
   ].freeze
 
+  attr_accessor :spots
+
   belongs_to_active_hash :clean_plan
   belongs_to_active_hash :order_status
   belongs_to :user

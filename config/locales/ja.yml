@@ -130,6 +130,7 @@ ja:
       inclusion: は一覧にありません
       invalid: "%{attribute}は不正な値です"
       invalid_password: パスワードが不正な値です（半角英字小・大文字と半角数字を混ぜて８文字以上で作ってください）
+      invalid_start_and_end: 正しい開始時間と終了時間にしてください
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       login: ログインに失敗しました
