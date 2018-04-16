@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module LabelHelper
-  def render_label(type)
-    content_tag :span, class: "label label-#{type}" do
-      yield
-    end
+  def render_label(type, &block)
+    content_tag :span, class: "label label-#{type}", &block
   end
 
   def gender_label(gender)
