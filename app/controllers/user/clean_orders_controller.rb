@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::CleanOrdersController < User::ApplicationController
-  before_action :setup_clean_order!, only: %i[show].freeze
+  before_action :setup_clean_order!, only: %i[show destroy].freeze
 
   def index
     @clean_orders = current_user.clean_orders
@@ -20,6 +20,15 @@ class User::CleanOrdersController < User::ApplicationController
     else
       flash[:danger] = t(:create, scope: 'errors.messages')
       render :new
+    end
+  end
+
+  def destroy
+    if @clean_order.update(order_status: OrderStatus::CANCELED)
+      redirect_to user_clean_orders_path, success: t(:cancel, scope: 'success.messages')
+    else
+      flash[:danger] = t(:cancel, scope: 'errors.messages')
+      render :show
     end
   end
 

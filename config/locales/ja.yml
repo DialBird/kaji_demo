@@ -112,14 +112,18 @@ ja:
       logout: ログアウトに成功しました
       create: 作成しました
       update: 更新しました
+      destroy: 削除しました
+      cancel: キャンセルしました
   errors:
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
       blank: "%{attribute}を入力してください"
       present: は入力しないでください
+      cancel: キャンセルに失敗しました
       confirmation: PasswordとPasswordConfirmationの入力が一致しません
       create: 作成に失敗しました
+      destroy: 削除に失敗しました
       email_format: 正しいEmailのフォーマットにしてください
       empty: を入力してください
       equal_to: は%{count}にしてください

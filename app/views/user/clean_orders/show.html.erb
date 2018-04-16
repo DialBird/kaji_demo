@@ -16,9 +16,15 @@
       <dd><%= end_time @clean_order %></dd>
     </dl>
     <div class="text-center">
-      <%= link_to '#', class: 'btn btn-danger' do %>
+      <%= link_to user_clean_orders_path, class: 'btn btn-default' do %>
+        <%= fa_icon 'angle-left', text: 'Back to List' %>
+      <% end %>
+      <% body = capture do %>
         <%= fa_icon 'ban', text: 'Cancel' %>
       <% end %>
+      <%= link_to_if(@clean_order.cancellable?, body, user_clean_order_path(@clean_order),
+                     method: :delete, class: 'btn btn-danger',
+                     data: { confirm: 'キャンセルしてもよろしいですか？' }) {} %>
     </div>
   </div>
 </div>
