@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     get 'edit' => 'user#edit'
     put 'account' => 'user#update'
 
-    resources :clean_orders
+    resources :clean_orders, except: %i[edit update].freeze
   end
 end
