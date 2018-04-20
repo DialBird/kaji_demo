@@ -46,6 +46,10 @@ class CleanOrder < ApplicationRecord
     end
   end
 
+  def acceptable?
+    checking?
+  end
+
   def cancellable?
     checking? || accepted?
   end
