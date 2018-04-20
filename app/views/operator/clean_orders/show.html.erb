@@ -1,0 +1,37 @@
+<h1 class="page-header">Clean Order Detail <%= order_status_label @clean_order %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <%= fa_icon 'sticky-note', text: 'Detail' %>
+    </h2>
+  </div>
+  <div class="panel-body">
+    <%= render 'shared/clean_order/detail_list', clean_order: @clean_order %>
+    <div class="text-center">
+      <%= link_to operator_clean_orders_path, class: 'btn btn-default' do %>
+        <%= fa_icon 'angle-left', text: 'Back to List' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @clean_order.acceptable? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <%= fa_icon 'check', text: 'Assign' %>
+      </h2>
+    </div>
+    <div class="panel-body">
+      <div class="text-center">
+        <% body = capture do %>
+          <%= fa_icon 'check', text: 'Assign' %>
+        <% end %>
+        <%= link_to_if(@clean_order.acceptable?, body,
+                       edit_operator_clean_order_path(@clean_order),
+                       class: 'btn btn-success') {} %>
+      </div>
+    </div>
+  </div>
+<% end %>
