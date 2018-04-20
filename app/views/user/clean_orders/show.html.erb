@@ -7,20 +7,7 @@
     </h2>
   </div>
   <div class="panel-body">
-    <dl class="dl-horizontal fs-16">
-      <dt>Date</dt>
-      <dd><%= @clean_order.date %></dd>
-      <dt>Clean Plan</dt>
-      <dd><%= @clean_order.clean_plan.name %></dd>
-      <dt>Clean Spots</dt>
-      <dd><%= @clean_order.clean_spot_images %></dd>
-      <dt>Start Time</dt>
-      <dd><%= start_time @clean_order %></dd>
-      <dt>End Time</dt>
-      <dd><%= end_time @clean_order %></dd>
-      <dt>Note</dt>
-      <dd><%= @clean_order.note %></dd>
-    </dl>
+    <%= render 'shared/clean_order/detail_list', clean_order: @clean_order %>
     <div class="text-center">
       <%= link_to user_clean_orders_path, class: 'btn btn-default' do %>
         <%= fa_icon 'angle-left', text: 'Back to List' %>
