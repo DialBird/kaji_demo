@@ -46,14 +46,5 @@ class User < ApplicationRecord
   validates :email, presence: true, mail_format: true, uniqueness: true
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validates :zip, zip_format: true
-  validate :valid_password_format?
-
-  private
-
-  def valid_password_format?
-    return true if password.blank?
-    return true if password =~ Settings.password_format
-    errors.add(:password, :invalid_password)
-    false
-  end
+  validates :password, password_format: true
 end
