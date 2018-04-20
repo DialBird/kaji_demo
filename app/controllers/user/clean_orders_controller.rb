@@ -39,6 +39,6 @@ class User::CleanOrdersController < User::ApplicationController
   end
 
   def setup_clean_order!
-    @clean_order = CleanOrder.find(params[:id])
+    @clean_order = CleanOrder.find(params[:id]).decorate
   end
 end
