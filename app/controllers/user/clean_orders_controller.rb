@@ -15,7 +15,7 @@ class User::CleanOrdersController < User::ApplicationController
 
   def create
     @clean_order = current_user.clean_orders.build(clean_order_params)
-    if @clean_order.save
+    if CreateCleanOrderService.new(@clean_order).execute
       redirect_to user_clean_order_path(@clean_order), success: t(:create, scope: 'success.messages')
     else
       flash[:danger] = t(:create, scope: 'errors.messages')
