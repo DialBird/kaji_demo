@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         get :info
       end
     end
-    resources :clean_orders
+    resources :clean_orders do
+      collection do
+        put :assign_staff
+      end
+    end
   end
 end
