@@ -24,20 +24,21 @@
 
 class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :gender
-  mount_uploader :avatar, AvatarUploader
-
-  has_secure_password
-  validates_presence_of :password_confirmation, if: :password_digest_changed?
-  attr_accessor :remember_token
+  include RememberTokenAuthentication
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age avatar name birthday email phone zip state city street
     password password_confirmation
   ].freeze
 
+  mount_uploader :avatar, AvatarUploader
   before_save { email.downcase! }
 
+  belongs_to_active_hash :gender
+  has_many :clean_orders, dependent: :destroy, inverse_of: :user
+
+  has_secure_password
+  validates_presence_of :password_confirmation, if: :password_digest_changed?
   validates :gender_id, inclusion: { in: Gender.all.map(&:id) }
   validates :age, presence: true,
                   numericality: { only_integer: true, greater_than: 0 }
@@ -45,38 +46,5 @@ class User < ApplicationRecord
   validates :email, presence: true, mail_format: true, uniqueness: true
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validates :zip, zip_format: true
-  validate :valid_password_format?
-
-  class << self
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
-
-    def digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
-    end
-  end
-
-  def authenticated?(token)
-    BCrypt::Password.new(remember_digest).is_password?(token)
-  end
-
-  def remember
-    self.remember_token = User.new_token
-    update(remember_digest: User.digest(remember_token))
-  end
-
-  def forget
-    update(remember_digest: nil)
-  end
-
-  private
-
-  def valid_password_format?
-    return true if password.blank?
-    return true if password =~ Settings.password_format
-    errors.add(:password, :invalid_password)
-    false
-  end
+  validates :password, password_format: true
 end

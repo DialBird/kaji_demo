@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SessionsHelper do
   describe 'user' do
     let(:token) { SecureRandom.urlsafe_base64 }
-    let!(:user) { FactoryBot.create(:user, remember_digest: User.digest(token)) }
+    let!(:user) { FactoryBot.create(:user, remember_digest: digest(token)) }
 
     describe '#current_user' do
       subject { current_user }
@@ -85,7 +85,7 @@ RSpec.describe SessionsHelper do
   end
   describe 'staff' do
     let(:token) { SecureRandom.urlsafe_base64 }
-    let!(:staff) { FactoryBot.create(:staff, remember_digest: Staff.digest(token)) }
+    let!(:staff) { FactoryBot.create(:staff, remember_digest: digest(token)) }
 
     describe '#current_staff' do
       subject { current_staff }

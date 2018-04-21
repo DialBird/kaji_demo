@@ -10,6 +10,9 @@
       <%= link_to 'Staff Top', staff_root_path, class: 'navbar-brand' %>
     </div>
     <% if staff_logged_in? %>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to 'Clean Orders', staff_clean_orders_path %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <%= link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do %>

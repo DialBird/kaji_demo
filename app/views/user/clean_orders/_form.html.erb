@@ -1,0 +1,47 @@
+<%= f.hidden_field :user_id %>
+<div class="form-group">
+  <%= f.label :clean_plan_id, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-6">
+    <% CleanPlan.all.each do |cp| %>
+      <div class="radio-inline">
+        <%= f.radio_button :clean_plan_id, cp.id %><%= cp.name %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :date, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-6">
+    <%= f.text_field :date, class: 'form-control', value: Date.current, data: { provide: 'datepicker', 'date-format' => 'yyyy/mm/dd' } %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :start_at, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-6">
+    <%= f.collection_select :start_at, ShiftTime.selectable_options, :id, :time, {}, class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :end_at, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-6">
+    <%= f.collection_select :end_at, ShiftTime.selectable_options, :id, :time, {}, class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :spots, class: 'col-sm-3 control-label' %>
+  <% Spot.all.each do |spot| %>
+    <label class="form-inline">
+      <%= f.check_box :spots, { multiple: true, checked: f.object.spots.include?(spot.id.to_s) }, spot.id, nil %>
+      <%= image_tag "spots/#{spot.type}.png", size: '50x50' %>
+    </label>
+  <% end %>
+</div>
+<div class="form-group">
+  <%= f.label :note, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-6">
+    <%= f.text_area :note, class: 'form-control' %>
+  </div>
+</div>
+<div class="text-center">
+  <%= f.submit 'Sutmit', class: 'btn btn-success' %>
+</div>

@@ -23,15 +23,7 @@
 
 class Staff < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :gender
-
-  has_secure_password
-  validates_presence_of :password_confirmation, if: :password_digest_changed?
-  attr_accessor :remember_token
-
-  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
-  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
-  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
+  include RememberTokenAuthentication
 
   PERMITTED_ATTRIBUTES = %i[
     gender_id age name birthday email phone zip state city street
@@ -40,6 +32,14 @@ class Staff < ApplicationRecord
 
   before_save { email.downcase! }
 
+  belongs_to_active_hash :gender
+  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  accepts_nested_attributes_for :regular_shifts, allow_destroy: true
+  has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
+  has_many :clean_orders, dependent: :destroy, inverse_of: :staff
+
+  has_secure_password
+  validates_presence_of :password_confirmation, if: :password_digest_changed?
   validates :gender_id, inclusion: { in: Gender.all.map(&:id) }
   validates :age, presence: true,
                   numericality: { only_integer: true, greater_than: 0 }
@@ -47,38 +47,42 @@ class Staff < ApplicationRecord
   validates :email, presence: true, mail_format: true, uniqueness: true
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validates :zip, zip_format: true
-  validate :valid_password_format?
+  validates :password, password_format: true
 
-  class << self
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
+  scope :assignable, ->(order) {
+    all.select { |staff| staff.assignable?(order) }
+  }
 
-    def digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
-    end
-  end
-
-  def authenticated?(token)
-    BCrypt::Password.new(remember_digest).is_password?(token)
-  end
-
-  def remember
-    self.remember_token = Staff.new_token
-    update(remember_digest: Staff.digest(remember_token))
-  end
-
-  def forget
-    update(remember_digest: nil)
+  def assignable?(order)
+    in_regular_shift?(order) &&
+      !any_irregular_offs?(order) &&
+      !any_reserved_clean_orders?(order)
   end
 
   private
 
-  def valid_password_format?
-    return true if password.blank?
-    return true if password =~ Settings.password_format
-    errors.add(:password, :invalid_password)
+  def in_regular_shift?(order)
+    shift = regular_shifts.find_by(dayofweek_id: order.date.wday + 1)
+    shift.start_at <= order.start_at && order.end_at <= shift.end_at
+  end
+
+  def any_irregular_offs?(order)
+    offs = irregular_offs.where(date: order.date)
+    offs.each do |off|
+      return true if schedule_overlap_with_order?(off, order)
+    end
     false
+  end
+
+  def any_reserved_clean_orders?(order)
+    reserved_orders = clean_orders.where(date: order.date)
+    reserved_orders.each do |res_o|
+      return true if schedule_overlap_with_order?(res_o, order)
+    end
+    false
+  end
+
+  def schedule_overlap_with_order?(schedule, order)
+    order.start_at < schedule.end_at || schedule.start_at < order.end_at
   end
 end

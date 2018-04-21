@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% staffs.each do |staff| %>
+      <tr>
+        <td><%= link_to staff.name, operator_staff_path(staff) %></td>
+        <td class="text-right">
+          <%= button_tag '割当', class: 'btn btn-success assign_staff_btn',
+                                 data: { staff_id: staff.id },
+                                 disabled: !clean_order.acceptable? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_tag assign_staff_operator_clean_orders_path, id: 'assign_staff_form', method: :put do %>
+  <%= hidden_field_tag :id, clean_order.id %>
+  <%= hidden_field_tag :staff_id %>
+<% end %>

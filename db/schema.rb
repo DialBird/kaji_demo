@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410105433) do
+ActiveRecord::Schema.define(version: 20180415004838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clean_orders", force: :cascade, comment: "清掃オーダー" do |t|
+    t.integer "user_id", null: false, comment: "ユーザーID"
+    t.integer "staff_id", comment: "スタッフID"
+    t.integer "clean_plan_id", default: 2, null: false, comment: "清掃プラン（clean_plan.yml参照）"
+    t.integer "order_status_id", default: 1, null: false, comment: "オーダーステータス（order_status.yml参照）"
+    t.date "date", null: false, comment: "日付"
+    t.integer "start_at", null: false, comment: "開始時間（time_block.yml参照）"
+    t.integer "end_at", null: false, comment: "終了時間（time_block.yml参照）"
+    t.text "note", comment: "備考"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clean_spots", force: :cascade, comment: "清掃箇所" do |t|
+    t.integer "clean_order_id", null: false, comment: "清掃オーダーID"
+    t.integer "spot_id", null: false, comment: "清掃スポットID（spot.yml参照）"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "irregular_offs", force: :cascade, comment: "急な休み" do |t|
     t.integer "staff_id", null: false, comment: "スタッフID"
@@ -85,6 +105,7 @@ ActiveRecord::Schema.define(version: 20180410105433) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "clean_spots", "clean_orders", name: "clean_spots_clean_order_id_fk"
   add_foreign_key "irregular_offs", "staffs", name: "irregular_offs_staff_id_fk"
   add_foreign_key "regular_shifts", "staffs", name: "regular_shifts_staff_id_fk"
 end

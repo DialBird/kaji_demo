@@ -1,0 +1,23 @@
+<h1 class="page-header">Clean Order Detail <%= order_status_label @clean_order %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <%= fa_icon 'sticky-note', text: 'Detail' %>
+    </h2>
+  </div>
+  <div class="panel-body">
+    <%= render 'shared/clean_order/detail_list', clean_order: @clean_order %>
+    <div class="text-center">
+      <%= link_to user_clean_orders_path, class: 'btn btn-default' do %>
+        <%= fa_icon 'angle-left', text: 'Back to List' %>
+      <% end %>
+      <% body = capture do %>
+        <%= fa_icon 'ban', text: 'Cancel' %>
+      <% end %>
+      <%= link_to_if(@clean_order.cancellable?, body, user_clean_order_path(@clean_order),
+                     method: :delete, class: 'btn btn-danger',
+                     data: { confirm: 'キャンセルしてもよろしいですか？' }) {} %>
+    </div>
+  </div>
+</div>
