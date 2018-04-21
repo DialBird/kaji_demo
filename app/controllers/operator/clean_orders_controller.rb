@@ -9,8 +9,8 @@ class Operator::CleanOrdersController < Operator::ApplicationController
   def show; end
 
   def assign_staff
-    if @clean_order.update(order_status_id: OrderStatus::ACCEPTED, staff_id: params[:staff_id])
-      redirect_to operator_clean_order_path, success: t(:update, scope: 'success.messages')
+    if @clean_order.update(order_status_id: OrderStatus::ACCEPTED.id, staff_id: params[:staff_id])
+      redirect_to operator_clean_order_path(@clean_order), success: t(:update, scope: 'success.messages')
     else
       flash[:danger] = t(:update, scope: 'errors.messages')
       render :show
