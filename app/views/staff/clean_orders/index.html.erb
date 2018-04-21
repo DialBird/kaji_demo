@@ -1,2 +1,2 @@
-<h1>Staff::CleanOrders#index</h1>
-<p>Find me in app/views/staff/clean_orders/index.html.erb</p>
+<h1>CleanOrders</h1>
+<%= render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :staff } %>
