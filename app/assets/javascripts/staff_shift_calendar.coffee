@@ -36,6 +36,7 @@ $ ->
         id: event.id,
         start: "#{date}T#{event.start}",
         end: "#{date}T#{event.end}",
+        type: event.type,
         color: eventColor(event.type)
       })
 
@@ -60,8 +61,12 @@ $ ->
     $infoForm.find('input[type="submit"]').click()
 
   eventClick = (event) ->
-    $deleteForm.attr('action', "/operator/irregular_offs/#{event.id}")
-    $deleteForm.find('input[type="submit"]').click()
+    if event.type == 'CleanOrder'
+      open("/operator/clean_orders/#{event.id}", "_blank")
+    else if event.type == 'IrregularOff'
+      if confirm 'Are you sure to delete?'
+        $deleteForm.attr('action', "/operator/irregular_offs/#{event.id}")
+        $deleteForm.find('input[type="submit"]').click()
 
   $('#calendar').fullCalendar({
     themeSystem: 'bootstrap3',
