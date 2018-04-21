@@ -53,14 +53,19 @@
 <div class="text-right">
   <%= link_to 'create', '#modal', class: 'btn btn-warning', data: { toggle: 'modal' } %>
 </div>
-<%= content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shifts_json, offs: @staff.irregular_offs_json }%>
+<%= content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shifts_json } %>
 
 <%# form %>
 
-<%= form_tag info_operator_irregular_offs_path, id: 'refresh-form', method: :get, remote: true do %>
+<%= form_tag api_staff_schedules_path, id: 'refresh-form', method: :get, remote: true do %>
+  <%= hidden_field_tag :staff_id, @staff.id %>
   <%= submit_tag '', style: 'display: none;' %>
 <% end %>
+
 <%= form_tag operator_irregular_off_path, id: 'delete-form', method: :delete, remote: true do %>
   <%= submit_tag '', style: 'display: none;' %>
 <% end %>
+
+<%# modal %>
+
 <%= render 'modal', staff: @staff %>
