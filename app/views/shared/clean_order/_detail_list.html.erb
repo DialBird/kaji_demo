@@ -11,4 +11,8 @@
   <dd><%= end_time clean_order %></dd>
   <dt>Note</dt>
   <dd><%= clean_order.note %></dd>
+  <% if controller.class.parent == Operator %>
+    <dt>Be in charge of</dt>
+    <dd><%= link_to clean_order.staff.name, operator_staff_path(clean_order.staff) %></dd>
+  <% end %>
 </dl>
