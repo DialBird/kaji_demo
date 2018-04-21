@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     resources :staffs
     resources :irregular_offs, only: %i[create destroy]
-    resources :clean_orders do
+    resources :clean_orders, only: %i[index show] do
       collection do
         put :assign_staff
       end
