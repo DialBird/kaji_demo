@@ -1,2 +1,2 @@
 <h1 class="page-header">Clean Orders</h1>
-<%= render 'shared/clean_order/index_list', clean_orders: @clean_orders %>
+<%= render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :operator } %>
