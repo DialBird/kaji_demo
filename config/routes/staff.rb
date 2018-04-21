@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     get 'edit' => 'staff#edit'
     put 'account' => 'staff#update'
 
-    resources :clean_orders, only: %i[index show].freeze
+    resources :clean_orders, only: %i[index show].freeze do
+      member do
+        put :accept
+      end
+    end
   end
 end
