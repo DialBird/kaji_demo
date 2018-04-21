@@ -12,12 +12,18 @@
       <%= link_to staff_clean_orders_path, class: 'btn btn-default' do %>
         <%= fa_icon 'angle-left', text: 'Back to List' %>
       <% end %>
-      <% body = capture do %>
+      <% accept_body = capture do %>
         <%= fa_icon 'thumbs-up', text: 'Accept' %>
       <% end %>
-      <%= link_to_if(@clean_order.staff_waiting?, body, accept_staff_clean_order_path(@clean_order),
+      <%= link_to_if(@clean_order.staff_waiting?, accept_body, accept_staff_clean_order_path(@clean_order),
                      method: :put, class: 'btn btn-success',
                      data: { confirm: '承認してもよろしいですか？' }) {} %>
+      <% refuse_body = capture do %>
+        <%= fa_icon 'thumbs-down', text: 'Refuse' %>
+      <% end %>
+      <%= link_to_if(@clean_order.staff_waiting?, refuse_body, refuse_staff_clean_order_path(@clean_order),
+                     method: :put, class: 'btn btn-danger',
+                     data: { confirm: '否認してもよろしいですか？' }) {} %>
     </div>
   </div>
 </div>

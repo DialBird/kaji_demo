@@ -68,6 +68,10 @@ class CleanOrder < ApplicationRecord
     update(order_status: OrderStatus::ACCEPTED) if staff_waiting?
   end
 
+  def refuse!
+    update(staff_id: nil) if staff_waiting?
+  end
+
   private
 
   def valid_times?
