@@ -40,8 +40,7 @@ class CleanOrder < ApplicationRecord
   validates :order_status_id, inclusion: { in: OrderStatus.all.map(&:id) }
   validate :valid_times?
 
-  # TODO: Need a context?
-  validates :spots, presence: true
+  validates :spots, presence: true, on: :create
 
   OrderStatus.all.pluck(:type).each do |status|
     define_method "#{status}?" do
