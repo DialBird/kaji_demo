@@ -42,6 +42,10 @@ class CleanOrder < ApplicationRecord
 
   validates :spots, presence: true, on: :create
 
+  scope :staff_waiting, -> {
+    where(order_status_id: OrderStatus::CHECKING.id).where.not(staff_id: nil)
+  }
+
   OrderStatus.all.pluck(:type).each do |status|
     define_method "#{status}?" do
       order_status == OrderStatus.find_by(type: status)

@@ -2,8 +2,9 @@
 
 class Staff::HomeController < Staff::ApplicationController
   def index
-    @clean_orders = CleanOrder
-                      .where(staff_id: current_staff.id)
+    @clean_orders = current_staff
+                      .clean_orders
+                      .staff_waiting
                       .order(:created_at)
   end
 end
