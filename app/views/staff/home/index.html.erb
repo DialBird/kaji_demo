@@ -1,2 +1,6 @@
 <h1 class="page-header">Staff Home</h1>
-<%= render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :staff } %>
+<% if @clean_orders.any? %>
+  <%= render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :staff } %>
+<% else %>
+  Nothing to do
+<% end %>
