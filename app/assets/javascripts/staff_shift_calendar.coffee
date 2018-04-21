@@ -20,6 +20,12 @@ $ ->
         color: '#90ee90'
       })
 
+  eventColor = (type) ->
+    if type == 'CleanOrder'
+      '#0ff'
+    else
+      '#333'
+
   $infoForm = $('#refresh-form')
   $infoForm.on 'ajax:success', (data) ->
     $('#calendar').fullCalendar('removeEvents')
@@ -30,7 +36,7 @@ $ ->
         id: event.id,
         start: "#{date}T#{event.start}",
         end: "#{date}T#{event.end}",
-        color: '#333'
+        color: eventColor(event.type)
       })
 
   $createForm = $('#create-form')
