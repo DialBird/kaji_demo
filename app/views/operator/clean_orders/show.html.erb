@@ -24,14 +24,12 @@
       </h2>
     </div>
     <div class="panel-body">
-      <div class="text-center">
-        <% body = capture do %>
-          <%= fa_icon 'check', text: 'Assign' %>
-        <% end %>
-        <%= link_to_if(@clean_order.acceptable?, body,
-                       edit_operator_clean_order_path(@clean_order),
-                       class: 'btn btn-success') {} %>
-      </div>
+      <% staffs = Staff.assignable(@clean_order) %>
+      <% if staffs.any? %>
+        <%= render partial: 'staff_lists', locals: { staffs: staffs, clean_order: @clean_order } %>
+      <% else %>
+        <p>No Staffs</p>
+      <% end %>
     </div>
   </div>
 <% end %>
