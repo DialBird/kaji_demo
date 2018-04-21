@@ -41,6 +41,11 @@ $ ->
   $deleteForm.on 'ajax:success', (data) ->
     requestLatestEvents()
 
+  #
+  # fullCalendarSettings
+  #
+
+  # It runs every Ajax success
   requestLatestEvents = ->
     days = current_days()
     $infoForm.find('input[name="dates[]"]').remove()
