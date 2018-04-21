@@ -60,6 +60,10 @@ class CleanOrder < ApplicationRecord
     checking? && staff_id
   end
 
+  def accept!
+    update(order_status: OrderStatus::ACCEPTED) if staff_waiting?
+  end
+
   private
 
   def valid_times?
