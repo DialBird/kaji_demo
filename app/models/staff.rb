@@ -48,4 +48,41 @@ class Staff < ApplicationRecord
   validates :phone, presence: true, phone_format: true, uniqueness: true
   validates :zip, zip_format: true
   validates :password, password_format: true
+
+  scope :assignable, ->(order) {
+    all.select { |staff| staff.assignable?(order) }
+  }
+
+  def assignable?(order)
+    in_regular_shift?(order) &&
+      !any_irregular_offs?(order) &&
+      !any_reserved_clean_orders?(order)
+  end
+
+  private
+
+  def in_regular_shift?(order)
+    shift = regular_shifts.find_by(dayofweek_id: order.date.wday + 1)
+    shift.start_at <= order.start_at && order.end_at <= shift.end_at
+  end
+
+  def any_irregular_offs?(order)
+    offs = irregular_offs.where(date: order.date)
+    offs.each do |off|
+      return true if schedule_overlap_with_order?(off, order)
+    end
+    false
+  end
+
+  def any_reserved_clean_orders?(order)
+    reserved_orders = clean_orders.where(date: order.date)
+    reserved_orders.each do |res_o|
+      return true if schedule_overlap_with_order?(res_o, order)
+    end
+    false
+  end
+
+  def schedule_overlap_with_order?(schedule, order)
+    order.start_at < schedule.end_at || schedule.start_at < order.end_at
+  end
 end
