@@ -49,11 +49,15 @@ class CleanOrder < ApplicationRecord
   end
 
   def acceptable?
-    checking?
+    checking? && !staff_id
   end
 
   def cancellable?
     checking? || accepted?
+  end
+
+  def staff_waiting?
+    checking? && staff_id
   end
 
   private
