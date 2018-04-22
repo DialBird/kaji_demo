@@ -64,12 +64,20 @@ class CleanOrder < ApplicationRecord
     checking? && staff_id
   end
 
+  def completable?
+    accepted?
+  end
+
   def accept!
     update(order_status: OrderStatus::ACCEPTED) if staff_waiting?
   end
 
   def refuse!
     update(staff_id: nil) if staff_waiting?
+  end
+
+  def complete!
+    update(order_status: OrderStatus::COMPLETED) if completable?
   end
 
   private

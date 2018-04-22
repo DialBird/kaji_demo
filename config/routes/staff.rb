@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       member do
         put :accept
         put :refuse
+        put :complete
       end
     end
   end

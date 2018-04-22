@@ -17,13 +17,19 @@
       <% end %>
       <%= link_to_if(@clean_order.staff_waiting?, accept_body, accept_staff_clean_order_path(@clean_order),
                      method: :put, class: 'btn btn-success',
-                     data: { confirm: '承認してもよろしいですか？' }) {} %>
+                     data: { confirm: 'Is it OK to ACCEPT?' }) {} %>
       <% refuse_body = capture do %>
         <%= fa_icon 'thumbs-down', text: 'Refuse' %>
       <% end %>
       <%= link_to_if(@clean_order.staff_waiting?, refuse_body, refuse_staff_clean_order_path(@clean_order),
                      method: :put, class: 'btn btn-danger',
-                     data: { confirm: '否認してもよろしいですか？' }) {} %>
+                     data: { confirm: 'Is it OK to REFUSE?' }) {} %>
+      <% complete_body = capture do %>
+        <%= fa_icon 'check', text: 'Complete' %>
+      <% end %>
+      <%= link_to_if(@clean_order.completable?, complete_body, complete_staff_clean_order_path(@clean_order),
+                     method: :put, class: 'btn btn-success',
+                     data: { confirm: 'Is it OK to COMPLETE?' }) {} %>
     </div>
   </div>
 </div>
