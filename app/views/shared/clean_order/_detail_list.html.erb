@@ -15,4 +15,17 @@
     <dt>Be in charge of</dt>
     <dd><%= link_to clean_order.staff.name, operator_staff_path(clean_order.staff) if clean_order.staff %></dd>
   <% end %>
+  <% if clean_order.reviewed? %>
+    <div class="panel panel-default mt-25">
+      <div class="panel-heading">
+        <h4 class="panel-title">Review</h4>
+      </div>
+      <div class="panel-body">
+        <dt>Star</dt>
+        <dd><%= clean_order.review_star %></dd>
+        <dt>Comment</dt>
+        <dd><%= clean_order.review_comment %></dd>
+      </div>
+    </div>
+  <% end %>
 </dl>

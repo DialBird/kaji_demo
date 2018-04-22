@@ -71,6 +71,10 @@ class CleanOrder < ApplicationRecord
     accepted?
   end
 
+  def reviewed?
+    review
+  end
+
   def accept!
     update(order_status: OrderStatus::ACCEPTED) if staff_waiting?
   end
