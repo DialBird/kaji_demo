@@ -15,6 +15,8 @@
 #
 
 class Review < ApplicationRecord
+  PERMITTED_ATTRIBUTES = %i[user_id clean_order_id date star comment].freeze
+
   belongs_to :user
   belongs_to :clean_order
 
