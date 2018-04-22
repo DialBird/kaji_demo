@@ -32,6 +32,7 @@ class CleanOrder < ApplicationRecord
   belongs_to :staff, optional: true
   has_many :clean_spots, dependent: :destroy, inverse_of: :clean_order
   accepts_nested_attributes_for :clean_spots, allow_destroy: true
+  has_one :review, dependent: :destroy, inverse_of: :clean_order
 
   validates :date, presence: true
   validates :start_at, inclusion: { in: ShiftTime.all.map(&:id) }

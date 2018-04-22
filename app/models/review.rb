@@ -15,4 +15,6 @@
 #
 
 class Review < ApplicationRecord
+  belongs_to :user
+  belongs_to :clean_order
 end
