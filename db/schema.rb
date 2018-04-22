@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415004838) do
+ActiveRecord::Schema.define(version: 20180422002308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20180415004838) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false, comment: "ユーザーID"
+    t.integer "clean_order_id", null: false, comment: "清掃オーダーID"
+    t.date "date", comment: "コメント日付"
+    t.integer "star", default: 0, null: false, comment: "スター"
+    t.text "comment", comment: "コメント"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "staffs", force: :cascade, comment: "家事代行スタッフ" do |t|
     t.integer "gender_id", null: false, comment: "性別(gender.yml参照)"
     t.integer "age", null: false, comment: "年齢"
@@ -108,4 +118,6 @@ ActiveRecord::Schema.define(version: 20180415004838) do
   add_foreign_key "clean_spots", "clean_orders", name: "clean_spots_clean_order_id_fk"
   add_foreign_key "irregular_offs", "staffs", name: "irregular_offs_staff_id_fk"
   add_foreign_key "regular_shifts", "staffs", name: "regular_shifts_staff_id_fk"
+  add_foreign_key "reviews", "clean_orders", name: "reviews_clean_order_id_fk"
+  add_foreign_key "reviews", "users", name: "reviews_user_id_fk"
 end
