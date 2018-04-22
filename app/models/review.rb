@@ -17,4 +17,6 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :clean_order
+
+  validates :star, inclusion: { in: [*0..5] }
 end
