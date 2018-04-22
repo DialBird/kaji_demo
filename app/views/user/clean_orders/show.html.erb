@@ -12,12 +12,20 @@
       <%= link_to user_clean_orders_path, class: 'btn btn-default' do %>
         <%= fa_icon 'angle-left', text: 'Back to List' %>
       <% end %>
-      <% body = capture do %>
+      <% cancel_body = capture do %>
         <%= fa_icon 'ban', text: 'Cancel' %>
       <% end %>
-      <%= link_to_if(@clean_order.cancellable?, body, user_clean_order_path(@clean_order),
+      <%= link_to_if(@clean_order.cancellable?, cancel_body, user_clean_order_path(@clean_order),
                      method: :delete, class: 'btn btn-danger',
                      data: { confirm: 'キャンセルしてもよろしいですか？' }) {} %>
+      <% review_body = capture do %>
+        <%= fa_icon 'star', text: 'Review' %>
+      <% end %>
+      <%= link_to_if(@clean_order.completed?, review_body, '#review-modal', class: 'btn btn-warning', data: { toggle: 'modal' }) {} %>
     </div>
   </div>
 </div>
+
+<%# modal %>
+
+<%= render 'review_modal', clean_order: @clean_order %>
