@@ -2,7 +2,7 @@
 
 module LabelHelper
   def render_label(type, &block)
-    content_tag :span, class: "label label-#{type}", &block
+    content_tag :span, class: "badge badge-#{type}", &block
   end
 
   def gender_label(gender)
