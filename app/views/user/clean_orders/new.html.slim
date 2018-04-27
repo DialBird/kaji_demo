@@ -1,5 +1,4 @@
 = display_errors @clean_order, CleanOrder::PERMITTED_ATTRIBUTES, title: '入力内容にエラーがあります。'
-h1.page-header
-  | Add CleanOrder
-= form_for @clean_order, url: user_clean_orders_path, html: { class: 'form-horizontal' } do |f|
+h1 Add CleanOrder
+= form_for @clean_order, url: user_clean_orders_path do |f|
   = render 'form', f: f

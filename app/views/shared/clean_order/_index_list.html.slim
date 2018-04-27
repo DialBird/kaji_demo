@@ -1,16 +1,11 @@
 table.table.table-striped
   thead
     tr
-      th
-        | status
-      th
-        | date
-      th
-        | clean plan
-      th
-        | start
-      th
-        | end
+      th status
+      th date
+      th clean plan
+      th start
+      th end
       th
   tbody
     - clean_orders.each do |cl_o|
@@ -26,4 +21,4 @@ table.table.table-striped
         td
           = end_time cl_o
         td.text-right
-          = link_to 'Show', send("#{login_type}_clean_order_path", cl_o), class: 'btn btn-default'
+          = link_to 'Show', send("#{login_type}_clean_order_path", cl_o), class: 'btn btn-secondary'
