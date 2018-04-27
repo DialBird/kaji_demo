@@ -25,6 +25,8 @@ gem 'font-awesome-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'slim-rails'
+gem 'html2slim'
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
