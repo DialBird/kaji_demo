@@ -1,6 +1,5 @@
-h1.page-header
-  | Staff Home
+h1 Staff Home
 - if @clean_orders.any?
   = render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :staff }
 - else
-  |  Nothing to do 
+  p Nothing to do 

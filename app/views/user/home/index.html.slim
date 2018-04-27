@@ -1,20 +1,19 @@
-h1.page-header
-  | Welcome to Kaji Service!
-.panel.panel-default
-  .panel-heading
-    h2.panel-title
-      = fa_icon 'pencil', text: 'Current Status'
-  .panel-body
+h1 Welcome to Kaji Service!
+.card.my-4
+  .card-header
+    = fa_icon 'pencil', text: 'Current Status'
+  .card-body
     ul
-      li
-        | Nothing
-.row.mt-25.mb-25
-  .col-sm-4.text-center
+      li Nothing
+.row.my-4.text-center
+  .col-md-12.mb-4
+    h2 Select your Service
+  .col-md-4
     = link_to user_clean_orders_path, class: 'btn btn-lg btn-success' do
       = fa_icon 'trash', text: 'Clean Order'
-  .col-sm-4.text-center
+  .col-md-4
     = link_to '#', class: 'btn btn-lg btn-primary' do
       = fa_icon 'book', text: 'Cook Order'
-  .col-sm-4.text-center
-    = link_to '#', class: 'btn btn-lg btn-warning' do
+  .col-md-4
+    = link_to '#', class: 'btn btn-lg btn-info' do
       = fa_icon 'home', text: 'House Clean Order'
