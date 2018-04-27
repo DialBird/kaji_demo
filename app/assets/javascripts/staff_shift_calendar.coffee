@@ -69,7 +69,7 @@ $ ->
         $deleteForm.find('input[type="submit"]').click()
 
   $('#calendar').fullCalendar({
-    themeSystem: 'bootstrap3',
+    themeSystem: 'bootstrap4',
     defaultView: 'agendaWeek',
     slotEventOverlap: false,
     header: {
