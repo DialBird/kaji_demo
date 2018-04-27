@@ -1,0 +1,23 @@
+h1.page-header
+  | Clean Order Detail 
+  = order_status_label @clean_order
+.panel.panel-default
+  .panel-heading
+    h2.panel-title
+      = fa_icon 'sticky-note', text: 'Detail'
+  .panel-body
+    = render 'shared/clean_order/detail_list', clean_order: @clean_order
+    .text-center
+      = link_to user_clean_orders_path, class: 'btn btn-default' do
+        = fa_icon 'angle-left', text: 'Back to List'
+      - if @clean_order.cancellable?
+        = link_to(user_clean_order_path(@clean_order),
+        -                     method: :delete,
+        -                     class: 'btn btn-danger',
+        -                     data: { confirm: 'キャンセルしてもよろしいですか？' }) do
+        = fa_icon 'ban', text: 'Cancel'
+      - if @clean_order.completed? && !@clean_order.reviewed?
+        = link_to('#review-modal', class: 'btn btn-warning', data: { toggle: 'modal' }) do
+          = fa_icon 'star', text: 'Review'
+- # modal
+= render 'review_modal', clean_order: @clean_order

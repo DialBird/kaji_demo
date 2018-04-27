@@ -1,0 +1,25 @@
+#create_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[data-dismiss="modal" aria-label="Close"]
+          = fa_icon 'times'
+        h2.modal-title
+          = fa_icon 'pencil', text: 'Irregular Off Form'
+      .modal-body
+        = form_tag(operator_irregular_offs_path, id: 'create-form', method: :post, remote: true, class: 'form-horizontal') do
+          = hidden_field_tag 'irregular_off[staff_id]', staff.id
+          .form-group
+            = label_tag 'irregular_off[date]', 'Start', class: 'col-sm-3'
+            .col-sm-9
+              = text_field_tag 'irregular_off[date]', Time.current, class: 'form-control', data: { provide: 'datepicker', 'date-format' => 'yyyy/mm/dd' }
+          .form-group
+            = label_tag 'irregular_off[start_at]', 'Start', class: 'col-sm-3'
+            .col-sm-9
+              = select_tag 'irregular_off[start_at]', options_from_collection_for_select(ShiftTime.all, 'id', 'time'), class: 'form-control'
+          .form-group
+            = label_tag 'irregular_off[end_at]', 'End', class: 'col-sm-3'
+            .col-sm-9
+              = select_tag 'irregular_off[end_at]', options_from_collection_for_select(ShiftTime.all, 'id', 'time'), class: 'form-control'
+          .text-center
+            = submit_tag 'Submit', class: 'btn btn-danger'

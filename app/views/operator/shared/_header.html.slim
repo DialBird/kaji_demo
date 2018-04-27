@@ -1,0 +1,23 @@
+header.navbar.navbar-inverse[role="navigation"]
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Operator Top', operator_root_path, class: 'navbar-brand'
+    - if operator_logged_in?
+      ul.nav.navbar-nav.navbar-left
+        li
+          = link_to 'Staffs', operator_staffs_path
+        li
+          = link_to 'Clean Orders', operator_clean_orders_path
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to 'Logout', operator_logout_path, method: :delete
+    - else
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to 'Login', operator_login_path

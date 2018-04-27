@@ -1,0 +1,27 @@
+header.navbar.navbar-default[role="navigation"]
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Staff Top', staff_root_path, class: 'navbar-brand'
+    - if staff_logged_in?
+      ul.nav.navbar-nav.navbar-left
+        li
+          = link_to 'Clean Orders', staff_clean_orders_path
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+            |  Settings 
+            span.caret
+          ul.dropdown-menu
+            li
+              = link_to staff_account_path do
+                = fa_icon 'check', class: 'invisible'
+                |  Account 
+            li.divider[role="separator"]
+            li
+              = link_to 'Log Out', staff_logout_path, method: :delete

@@ -1,0 +1,60 @@
+.panel.panel-default
+  .panel-heading
+    h2.panel-title
+      span.glyphicon.glyphicon-user[aria-hidden="true"]
+      |  Profile 
+  .panel-body
+    .media
+      .media-left
+        = image_tag current_user.avatar_url, size: '150x150', alt: 'profile-image', class: 'media-object img-circle'
+      .media-body
+        h2.media-heading
+          = current_user.name
+        = link_to 'Edit', user_edit_path, class: 'btn btn-success'
+    hr
+    table.table.table-striped.short
+      tr
+        th
+          | Gender
+        td
+          = current_user.gender.name
+      tr
+        th
+          | Age
+        td
+          = current_user.age
+      tr
+        th
+          | Birthday
+        td
+          = current_user.birthday
+      tr
+        th
+          | Email
+        td
+          = current_user.email
+      tr
+        th
+          | Phone
+        td
+          = current_user.phone
+      tr
+        th
+          | Zip
+        td
+          = current_user.zip
+      tr
+        th
+          | State
+        td
+          = current_user.state
+      tr
+        th
+          | City
+        td
+          = current_user.city
+      tr
+        th
+          | Street
+        td
+          = current_user.street

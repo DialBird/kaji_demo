@@ -1,0 +1,5 @@
+h1.page-header
+  | Clean Orders
+.text-right
+  = link_to 'Add', new_user_clean_order_path, class: 'btn btn-success'
+= render partial: 'shared/clean_order/index_list', locals: { clean_orders: @clean_orders, login_type: :user }

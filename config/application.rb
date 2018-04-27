@@ -24,6 +24,7 @@ module Kaji2
                                controller_specs: true,
                                request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
+      g.template_engine :slim
     end
 
     config.paths['config/routes.rb'].concat Dir[Rails.root.join('config/routes/**/*.rb')]
