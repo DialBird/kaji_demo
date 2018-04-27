@@ -10,7 +10,7 @@ html
     = render header
     - if controller.class.parent == Object
       = render 'shared/jumbotron'
-    .container
+    .container.py-4
       = display_flash
       = yield
     = render 'shared/footer'
