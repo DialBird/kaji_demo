@@ -1,14 +1,15 @@
 doctype html
 html
   head
-    title
-      | Kaji2
+    title Kaji2
     = csrf_meta_tags
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = javascript_include_tag params[:controller]
   body
     = render header
+    - if controller.class.parent == Object
+      = render 'shared/jumbotron'
     .container
       = display_flash
       = yield
