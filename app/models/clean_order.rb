@@ -45,6 +45,10 @@ class CleanOrder < ApplicationRecord
 
   validates :spots, presence: true, on: :create
 
+  scope :currently_active, -> {
+    where(order_status_id: [OrderStatus::CHECKING.id, OrderStatus::ACCEPTED.id])
+  }
+
   scope :staff_waiting, -> {
     where(order_status_id: OrderStatus::CHECKING.id).where.not(staff_id: nil)
   }
