@@ -4,7 +4,7 @@ class Staff::CleanOrdersController < Staff::ApplicationController
   before_action :setup_clean_order!, only: %i[show accept refuse complete].freeze
 
   def index
-    @clean_orders = current_staff.clean_orders.order(:created_at)
+    @clean_orders = current_staff.clean_orders.order(created_at: :desc)
   end
 
   def show; end
