@@ -1,24 +1,20 @@
-h1.page-header
-  | Clean Order Detail 
+h1 Clean Order Detail 
   = order_status_label @clean_order
-.panel.panel-default
-  .panel-heading
-    h2.panel-title
-      = fa_icon 'sticky-note', text: 'Detail'
-  .panel-body
+.card
+  .card-header
+    = fa_icon 'sticky-note', text: 'Detail'
+  .card-body
     = render 'shared/clean_order/detail_list', clean_order: @clean_order
     .text-center
-      = link_to operator_clean_orders_path, class: 'btn btn-default' do
+      = link_to operator_clean_orders_path, class: 'btn btn-secondary' do
         = fa_icon 'angle-left', text: 'Back to List'
 - if @clean_order.acceptable?
-  .panel.panel-default
-    .panel-heading
-      h2.panel-title
-        = fa_icon 'check', text: 'Assign'
-    .panel-body
+  .card
+    .card-header
+      = fa_icon 'check', text: 'Assign'
+    .card-body
       - staffs = Staff.assignable(@clean_order)
       - if staffs.any?
         = render partial: 'staff_lists', locals: { staffs: staffs, clean_order: @clean_order }
       - else
-        p
-          | No Staffs
+        p No Staffs
