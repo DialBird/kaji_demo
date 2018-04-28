@@ -25,7 +25,7 @@ module LabelHelper
   def order_status_label(order)
     case order.order_status
     when OrderStatus::CHECKING
-      concat render_label('default') { 'checking' }
+      concat render_label('secondary') { 'checking' }
       concat render_label(:warning) { 'response waiting' } if order.staff_waiting?
       nil
     when OrderStatus::ACCEPTED
