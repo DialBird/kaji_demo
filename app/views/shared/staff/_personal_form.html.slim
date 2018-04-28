@@ -1,0 +1,54 @@
+.col-md-8
+  .form-row
+    .form-group.col-md-6
+      = f.label :name, class: 'control-label'
+      .col-sm-12
+        = f.text_field :name, class: 'form-control'
+    .form-group.col-md-6
+      = f.label :email, class: 'control-label'
+      .col-sm-12
+        = f.email_field :email, class: 'form-control'
+  .form-row
+    .form-group.col-md-6
+      = f.label :password, class: 'control-label'
+      .col-sm-12
+        = f.password_field :password, class: 'form-control'
+    .form-group.col-md-6
+      = f.label :password_confirmation, class: 'control-label'
+      .col-sm-12
+        = f.password_field :password_confirmation, class: 'form-control'
+  .form-group
+    = f.label :gender_id, class: 'control-label'
+    .col-sm-6
+      - Gender.all.each_with_index do |g, idx|
+        .form-check.form-check-inline
+          = f.radio_button :gender_id, g.id, id: "gen-#{idx}", class: 'form-check-input'
+          lebel.form-check-label[for="gen-#{idx}"] #{g.name}
+  .form-group
+    = f.label :age, class: 'control-label'
+    .col-sm-6
+      = f.select :age, ((18..100).map {|i| [i, i] }), { include_blank: '-- Please Enter --' }, class: 'form-control'
+  .form-group
+    = f.label :birthday, class: 'control-label'
+    .col-sm-6
+      = f.text_field :birthday, class: 'form-control', value: '1991/01/01', data: { provide: 'datepicker', 'date-format' => 'yyyy/mm/dd' }
+  .form-group
+    = f.label :phone, class: 'control-label'
+    .col-sm-6
+      = f.text_field :phone, class: 'form-control'
+  .form-group
+    = f.label :zip, class: 'control-label'
+    .col-sm-6
+      = f.text_field :zip, class: 'form-control'
+  .form-group
+    = f.label :state, class: 'control-label'
+    .col-sm-6
+      = f.text_field :state, class: 'form-control'
+  .form-group
+    = f.label :city, class: 'control-label'
+    .col-sm-6
+      = f.text_field :city, class: 'form-control'
+  .form-group
+    = f.label :street, class: 'control-label'
+    .col-sm-6
+      = f.text_field :street, class: 'form-control'
