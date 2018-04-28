@@ -1,60 +1,40 @@
 = javascript_include_tag 'staff_shift_calendar'
-h1.page-header
-  = @staff.name
-.text-right
+h1 #{@staff.name}
+.text-right.mb-4
   = link_to 'Edit', edit_operator_staff_path(@staff), class: 'btn btn-success'
-.panel.panel-default
-  .panel-heading
-    h2.panel-title
-      = fa_icon 'user', text: 'Profile'
-  .panel-body
+.card.mb-4
+  .card-header
+    = fa_icon 'user', text: 'Profile'
+  .card-body
     table.table.table-striped.short
       tr
-        th
-          | Gender
-        td
-          = @staff.gender.name
+        th Gender
+        td #{@staff.gender.name}
       tr
-        th
-          | Age
-        td
-          = @staff.age
+        th Age
+        td #{@staff.age}
       tr
-        th
-          | Birthday
-        td
-          = @staff.birthday
+        th Birthday
+        td #{@staff.birthday}
       tr
-        th
-          | Email
-        td
-          = @staff.email
+        th Email
+        td #{@staff.email}
       tr
-        th
-          | Phone
-        td
-          = @staff.phone
+        th Phone
+        td #{@staff.phone}
       tr
-        th
-          | Zip
-        td
-          = @staff.zip
+        th Zip
+        td #{@staff.zip}
       tr
-        th
-          | State
-        td
-          = @staff.state
+        th State
+        td #{@staff.state}
       tr
-        th
-          | City
-        td
-          = @staff.city
+        th City
+        td #{@staff.city}
       tr
-        th
-          | Street
-        td
-          = @staff.street
-.text-right
+        th Street
+        td #{@staff.street}
+.text-right.mb-4
   = link_to 'create', '#create_modal', class: 'btn btn-warning', data: { toggle: 'modal' }
 = content_tag :div, '', id: 'calendar', data: { shifts: @staff.regular_shifts_json }
 - # form

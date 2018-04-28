@@ -1,28 +1,21 @@
-h1.page-header
-  | Staffs
-.text-right
+h1 Staffs
+.text-right.mb-4
   = link_to 'Add', new_operator_staff_path, class: 'btn btn-success'
 table.table.table-striped
   thead
     tr
-      th
-        | name
-      th
-        | age
-      th
-        | email
-      th
-        | phone
-      th
-        | state
-      th
-        | city
+      th name
+      th age
+      th email
+      th phone
+      th state
+      th city
   tbody
     - @staffs.each do |staff|
       tr
         td
           = gender_label(staff.gender)
-          = link_to staff.name, operator_staff_path(staff)
+          = link_to staff.name, operator_staff_path(staff), class: 'ml-2'
         td
           = staff.age
         td
