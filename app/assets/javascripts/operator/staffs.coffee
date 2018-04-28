@@ -23,3 +23,6 @@ $ ->
 
   $('input.is-rest').each (_, elem) ->
     SwitchShiftPanelStatus($(elem))
+
+  $('#create-form').on 'submit', ->
+    $('#create_modal').modal('toggle')
