@@ -33,7 +33,7 @@ class Staff < ApplicationRecord
   before_save { email.downcase! }
 
   belongs_to_active_hash :gender
-  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  has_many :regular_shifts, -> { order('dayofweek_id') }, dependent: :destroy, inverse_of: :staff
   accepts_nested_attributes_for :regular_shifts, allow_destroy: true
   has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
   has_many :clean_orders, dependent: :destroy, inverse_of: :staff
