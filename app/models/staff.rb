@@ -49,6 +49,15 @@ class Staff < ApplicationRecord
   validates :zip, zip_format: true
   validates :password, password_format: true
 
+  scope :gender_is, ->(gender_id) {
+    where(gender_id: gender_id)
+  }
+  scope :name_like, ->(name) {
+    where('name LIKE ?', "%#{name}%")
+  }
+  scope :email_like, ->(email) {
+    where('email LIKE ?', "%#{email}%")
+  }
   scope :assignable, ->(order) {
     all.select { |staff| staff.assignable?(order) }
   }
