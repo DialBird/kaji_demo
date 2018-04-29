@@ -53,6 +53,10 @@ class CleanOrder < ApplicationRecord
     where(order_status_id: OrderStatus::CHECKING.id).where.not(staff_id: nil)
   }
 
+  scope :not_reviewed, -> {
+    where.not(id: Review.all.pluck(:clean_order_id))
+  }
+
   OrderStatus.all.pluck(:type).each do |status|
     define_method "#{status}?" do
       order_status == OrderStatus.find_by(type: status)
