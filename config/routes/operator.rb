@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     post 'login' => 'sessions#create'
     delete 'logout' => 'sessions#destroy'
 
-    resources :staffs
+    resources :staffs do
+      get :search, on: :collection
+    end
     resources :irregular_offs, only: %i[create destroy]
     resources :clean_orders, only: %i[index show] do
       collection do

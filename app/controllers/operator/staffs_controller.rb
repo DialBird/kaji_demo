@@ -4,7 +4,14 @@ class Operator::StaffsController < Operator::ApplicationController
   before_action :setup_staff!, only: %i[show edit update].freeze
 
   def index
-    @staffs = Staff.all
+    @search = Search::Staff.new
+    @staffs = @search.execute
+  end
+
+  def search
+    @search = Search::Staff.new(search_staff_params)
+    @staffs = @search.execute
+    render :index
   end
 
   def show; end
@@ -42,6 +49,10 @@ class Operator::StaffsController < Operator::ApplicationController
 
   def setup_staff!
     @staff = Staff.find(params[:id]).decorate
+  end
+
+  def search_staff_params
+    params.require(:search_staff).permit([*Search::Staff::ATTRIBUTES, gender_ids: []])
   end
 
   def staff_params
