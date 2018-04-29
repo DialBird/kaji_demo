@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     put 'account' => 'user#update'
 
     resources :clean_orders, except: %i[edit update].freeze
+    resources :reviews, only: %i[create edit update].freeze
   end
 end

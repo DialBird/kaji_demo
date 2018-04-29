@@ -1,0 +1,29 @@
+h1 Staffs
+= render 'search_box'
+.text-right.mb-4
+  = link_to 'Add', new_operator_staff_path, class: 'btn btn-success'
+table.table.table-striped
+  thead
+    tr
+      th name
+      th age
+      th email
+      th phone
+      th state
+      th city
+  tbody
+    - @staffs.each do |staff|
+      tr
+        td
+          = gender_label(staff.gender)
+          = link_to staff.name, operator_staff_path(staff), class: 'ml-2'
+        td
+          = staff.age
+        td
+          = staff.email
+        td
+          = staff.phone
+        td
+          = staff.state
+        td
+          = staff.city

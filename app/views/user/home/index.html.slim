@@ -1,0 +1,33 @@
+h1 Welcome to Kaji Service!
+.card
+  .card-header
+    = fa_icon 'star', text: 'Review Please!'
+  .card-body
+    table.table.table-striped
+      thead
+        tr
+          th date
+          th start
+          th end
+          th
+      tbody
+        - @clean_orders.each do |cl_o|
+          tr
+            td #{cl_o.date}
+            td #{start_time cl_o}
+            td #{end_time cl_o}
+            td.text-right
+              = link_to 'Review', user_clean_order_path(cl_o), class: 'btn btn-success'
+
+.row.my-4.text-center
+  .col-md-12.mb-4
+    h2 Select your Service
+  .col-md-4
+    = link_to user_clean_orders_path, class: 'btn btn-lg btn-success' do
+      = fa_icon 'trash', text: 'Clean Order'
+  .col-md-4
+    = link_to '#', class: 'btn btn-lg btn-primary' do
+      = fa_icon 'book', text: 'Cook Order'
+  .col-md-4
+    = link_to '#', class: 'btn btn-lg btn-info' do
+      = fa_icon 'home', text: 'House Clean Order'

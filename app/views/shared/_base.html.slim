@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Kaji2
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = javascript_include_tag params[:controller]
+  body
+    = render header
+    - if controller.class.parent == Object
+      = render 'shared/jumbotron'
+    .container.py-4
+      = display_flash
+      = yield
+    = render 'shared/footer'

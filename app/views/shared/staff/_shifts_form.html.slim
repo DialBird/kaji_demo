@@ -1,0 +1,27 @@
+.card
+  .card-header
+    = fa_icon 'sticky-note', text: 'Regular Shift'
+  .card-body
+    = f.fields_for :regular_shifts do |rs_f|
+      .dayofweek_field
+        = rs_f.hidden_field :dayofweek_id
+        h5 #{rs_f.object.dayofweek.name}
+        .form-group.col-md-6
+          .custom-control.custom-checkbox
+            = check_box_tag :is_rest, true, false, { id: "rs-#{rs_f.object.dayofweek_id}", class: 'custom-control-input is-rest' }
+            label.custom-control-label[for="rs-#{rs_f.object.dayofweek_id}"] Rest?
+        .form-row.active.col-md-6
+          .form-group.col-md-6
+            = rs_f.label :start_at, class: 'control-label'
+            = rs_f.collection_select :start_at, ShiftTime.all, :id, :time, {}, class: 'form-control time-input'
+          .form-group.col-md-6
+            = rs_f.label :end_at, class: 'control-label'
+            = rs_f.collection_select :end_at, ShiftTime.all, :id, :time, {}, class: 'form-control time-input'
+        .form-row.inactive.col-md-6
+          .form-group.col-md-6
+            = rs_f.label :start_at, class: 'control-label'
+            = rs_f.text_field :start_at, { value: ShiftTime.find(0).time, class: 'form-control time-input', readonly: true }
+          .form-group.col-md-6
+            = rs_f.label :end_at, class: 'control-label'
+            = rs_f.text_field :end_at, { value: ShiftTime.find(0).time, class: 'form-control time-input', readonly: true }
+      hr

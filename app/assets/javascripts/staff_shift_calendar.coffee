@@ -20,6 +20,12 @@ $ ->
         color: '#90ee90'
       })
 
+  eventColor = (type) ->
+    if type == 'CleanOrder'
+      '#0ff'
+    else
+      '#333'
+
   $infoForm = $('#refresh-form')
   $infoForm.on 'ajax:success', (data) ->
     $('#calendar').fullCalendar('removeEvents')
@@ -30,7 +36,8 @@ $ ->
         id: event.id,
         start: "#{date}T#{event.start}",
         end: "#{date}T#{event.end}",
-        color: '#333'
+        type: event.type,
+        color: eventColor(event.type)
       })
 
   $createForm = $('#create-form')
@@ -54,11 +61,15 @@ $ ->
     $infoForm.find('input[type="submit"]').click()
 
   eventClick = (event) ->
-    $deleteForm.attr('action', "/operator/irregular_offs/#{event.id}")
-    $deleteForm.find('input[type="submit"]').click()
+    if event.type == 'CleanOrder'
+      open("/operator/clean_orders/#{event.id}", "_blank")
+    else if event.type == 'IrregularOff'
+      if confirm 'Are you sure to delete?'
+        $deleteForm.attr('action', "/operator/irregular_offs/#{event.id}")
+        $deleteForm.find('input[type="submit"]').click()
 
   $('#calendar').fullCalendar({
-    themeSystem: 'bootstrap3',
+    themeSystem: 'bootstrap4',
     defaultView: 'agendaWeek',
     slotEventOverlap: false,
     header: {

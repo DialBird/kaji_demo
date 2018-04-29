@@ -8,8 +8,8 @@ $ ->
     $elem.find(classname).each -> $(@).prop('disabled', true)
 
   SwitchShiftPanelStatus = ($checker) ->
-    $active = $checker.closest('.panel-body').find('.active')
-    $inactive = $checker.closest('.panel-body').find('.inactive')
+    $active = $checker.closest('.dayofweek_field').find('.active')
+    $inactive = $checker.closest('.dayofweek_field').find('.inactive')
 
     if $checker.is(':checked')
       Activate($inactive, '.time-input')
@@ -23,3 +23,6 @@ $ ->
 
   $('input.is-rest').each (_, elem) ->
     SwitchShiftPanelStatus($(elem))
+
+  $('#create-form').on 'submit', ->
+    $('#create_modal').modal('toggle')

@@ -36,6 +36,7 @@ class User < ApplicationRecord
 
   belongs_to_active_hash :gender
   has_many :clean_orders, dependent: :destroy, inverse_of: :user
+  has_many :reviews, dependent: :destroy, inverse_of: :user
 
   has_secure_password
   validates_presence_of :password_confirmation, if: :password_digest_changed?

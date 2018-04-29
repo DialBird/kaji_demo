@@ -1,0 +1,8 @@
+.text-center
+  h1 #{title}
+  = form_tag login_path, class: 'login'
+    = email_field_tag 'session[email]', '', id: 'input-email', class: 'form-control mb-4', placeholder: 'Email', required: true
+    = password_field_tag 'session[password]', '', id: 'input-password', class: 'form-control mb-4', placeholder: 'Password', required: true
+    .text-center
+      = link_to 'Back', root_path, class: 'btn btn-secondary mr-2'
+      = submit_tag 'Submit', class: 'btn btn-primary'

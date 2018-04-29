@@ -1,0 +1,17 @@
+header.bg-light
+  .container
+    nav.navbar.navbar-expand-md.navbar-light
+      = link_to 'Staff Top', staff_root_path, class: 'navbar-brand'
+      - if staff_logged_in?
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarCollapse"]
+          span.navbar-toggler-icon
+        #navbarCollapse.collapse.navbar-collapse
+          .navbar-nav.mr-auto
+            = link_to 'Clean Orders', staff_clean_orders_path, class: 'nav-item nav-link'
+          .navbar-nav
+            .nav-item.dropdown
+              = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: 'dropdown' }
+                = fa_icon 'cog'
+              .dropdown-menu
+                = link_to 'Account', staff_account_path, class: 'dropdown-item'
+                = link_to 'Log Out', staff_logout_path, method: :delete, class: 'dropdown-item'

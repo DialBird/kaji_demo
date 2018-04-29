@@ -1,0 +1,24 @@
+table.table.table-striped
+  thead
+    tr
+      th status
+      th date
+      th clean plan
+      th start
+      th end
+      th
+  tbody
+    - clean_orders.each do |cl_o|
+      tr
+        td
+          = order_status_label(cl_o)
+        td
+          = cl_o.date
+        td
+          = cl_o.clean_plan.name
+        td
+          = start_time cl_o
+        td
+          = end_time cl_o
+        td.text-right
+          = link_to 'Show', send("#{login_type}_clean_order_path", cl_o), class: 'btn btn-secondary'

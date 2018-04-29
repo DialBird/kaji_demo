@@ -1,0 +1,21 @@
+#review-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5.modal-title
+          = fa_icon 'star', text: 'Review'
+        button.close[data-dismiss="modal" aria-label="Close"]
+          = fa_icon 'times'
+      .modal-body
+        = form_tag user_reviews_path, class: 'form-horizontal', method: :post, data: { toggle: 'validator' } do
+          = hidden_field_tag 'review[user_id]', current_user.id
+          = hidden_field_tag 'review[clean_order_id]', clean_order.id
+          = hidden_field_tag 'review[date]', Time.current
+          .form-group
+            = label_tag :star, 'star'
+            = select_tag 'review[star]', options_for_select((0..5).map {|i| [i, i] }), { include_blank: '-- Select --', class: 'form-control', required: true }
+          .form-group
+            = label_tag :comment, 'comment'
+            = text_area_tag 'review[comment]', '', rows: '7', style: 'width: 100%;'
+          .text-center
+            = submit_tag 'Submit', class: 'btn btn-success'

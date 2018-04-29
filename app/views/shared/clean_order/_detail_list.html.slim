@@ -1,0 +1,25 @@
+dl.fs-16
+  dt Date
+  dd #{clean_order.date}
+  dt Clean Plan
+  dd #{clean_order.clean_plan.name}
+  dt Clean Spots
+  dd #{clean_order.clean_spot_images}
+  dt Start Time
+  dd #{start_time clean_order}
+  dt End Time
+  dd #{end_time clean_order}
+  dt Note
+  dd #{clean_order.note}
+  - if controller.class.parent == Operator
+    dt Be in charge of
+    dd #{link_to clean_order.staff.name, operator_staff_path(clean_order.staff) if clean_order.staff}
+  - if clean_order.reviewed?
+    .card
+      .card-header
+        = fa_icon 'star', text: 'Review'
+      .card-body
+        dt Star
+        dd #{clean_order.review_star}
+        dt Comment
+        dd #{clean_order.review_comment}

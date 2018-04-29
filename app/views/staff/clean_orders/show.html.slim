@@ -1,0 +1,23 @@
+h1 Clean Order Detail #{order_status_label @clean_order}
+.card
+  .card-header
+    = fa_icon 'sticky-note', text: 'Detail'
+  .card-body
+    = render 'shared/clean_order/detail_list', clean_order: @clean_order
+    .text-center
+      = link_to staff_clean_orders_path, class: 'btn btn-secondary' do
+        = fa_icon 'angle-left', text: 'Back to List'
+      - if @clean_order.staff_waiting?
+        = link_to accept_staff_clean_order_path(@clean_order),
+                  method: :put, class: 'btn btn-success ml-2',
+                  data: { confirm: 'Is it OK to ACCEPT?' } do
+          = fa_icon 'thumbs-up', text: 'Accept'
+        = link_to refuse_staff_clean_order_path(@clean_order),
+                  method: :put, class: 'btn btn-danger ml-2',
+                  data: { confirm: 'Is it OK to REFUSE?' } do
+          = fa_icon 'thumbs-down', text: 'Refuse'
+      - if @clean_order.completable?
+        = link_to complete_staff_clean_order_path(@clean_order),
+                  method: :put, class: 'btn btn-success ml-2',
+                  data: { confirm: 'Is it OK to COMPLETE?' } do
+          = fa_icon 'check', text: 'Complete'

@@ -2,26 +2,35 @@
 
 class Api::StaffSchedulesController < ApplicationController
   def info
-    staff_id = params[:staff_id]
-    clean_orders = CleanOrder.where(date: params[:dates], staff_id: staff_id)
-    clean_orders_json = json_format(clean_orders)
-    irregular_offs = IrregularOff.where(date: params[:dates], staff_id: staff_id)
-    irregular_offs_json = json_format(irregular_offs)
-    json = clean_orders_json.concat irregular_offs_json
     respond_to do |format|
-      format.json { render json: json }
+      format.json { render json: events_json(params[:staff_id]) }
     end
   end
 
   private
 
+  def events_json(staff_id)
+    clean_orders_json(staff_id).concat irregular_offs_json(staff_id)
+  end
+
+  def clean_orders_json(staff_id)
+    clean_orders = CleanOrder.where(date: params[:dates], staff_id: staff_id)
+    json_format(clean_orders)
+  end
+
+  def irregular_offs_json(staff_id)
+    irregular_offs = IrregularOff.where(date: params[:dates], staff_id: staff_id)
+    json_format(irregular_offs)
+  end
+
   def json_format(items)
-    items.map do |io|
+    items.map do |item|
       {
-        id: io.id,
-        date: io.date,
-        start: ShiftTime.find(io.start_at).time,
-        end: ShiftTime.find(io.end_at).time
+        id: item.id,
+        date: item.date,
+        type: item.class.name,
+        start: ShiftTime.find(item.start_at).time,
+        end: ShiftTime.find(item.end_at).time
       }
     end
   end

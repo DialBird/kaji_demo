@@ -1,0 +1,15 @@
+header.bg-light
+  .container
+    nav.navbar.navbar-expand-md.navbar-light
+      = link_to 'User Top', user_root_path, class: 'navbar-brand'
+      - if user_logged_in?
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarCollapse"]
+          span.navbar-toggler-icon
+        #navbarCollapse.collapse.navbar-collapse
+          .navbar-nav.ml-auto
+            .nav-item.dropdown
+              = link_to '#', class: 'nav-link', data: { toggle: 'dropdown' }
+                = image_tag current_user.avatar_url, size: '40x40', class: 'rounded-circle'
+              .dropdown-menu
+                = link_to 'Account', user_account_path, class: 'dropdown-item'
+                = link_to 'Log Out', user_logout_path, method: :delete, class: 'dropdown-item'

@@ -1,0 +1,46 @@
+h1 Profile
+.row.my-4
+  .col-md-4
+    .card.text-center
+      .card-body
+        h3
+          = current_staff.name
+        = link_to 'Edit', staff_edit_path, class: 'btn btn-success'
+  .col-md-8
+    table.table.table-striped.short
+      tr
+        th Gender
+        td
+          = current_staff.gender.name
+      tr
+        th Age
+        td
+          = current_staff.age
+      tr
+        th Birthday
+        td
+          = current_staff.birthday
+      tr
+        th Email
+        td
+          = current_staff.email
+      tr
+        th Phone
+        td
+          = current_staff.phone
+      tr
+        th Zip
+        td
+          = current_staff.zip
+      tr
+        th State
+        td
+          = current_staff.state
+      tr
+        th City
+        td
+          = current_staff.city
+      tr
+        th Street
+        td
+          = current_staff.street

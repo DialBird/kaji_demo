@@ -1,0 +1,7 @@
+= display_errors current_staff, User::PERMITTED_ATTRIBUTES, title: '個人情報の入力内容にエラーがあります。'
+h1 Edit Profile
+= form_for current_staff, url: staff_account_path, method: :put do |f|
+  = render 'shared/staff/personal_form', f: f
+  .col-md-12.text-center
+    = link_to '戻る', staff_account_path(current_staff), class: 'btn btn-secondary mr-2'
+    = f.submit '保存', class: 'btn btn-success'

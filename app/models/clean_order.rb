@@ -32,6 +32,9 @@ class CleanOrder < ApplicationRecord
   belongs_to :staff, optional: true
   has_many :clean_spots, dependent: :destroy, inverse_of: :clean_order
   accepts_nested_attributes_for :clean_spots, allow_destroy: true
+  has_one :review, dependent: :destroy, inverse_of: :clean_order
+
+  delegate :star, :comment, to: :review, prefix: true
 
   validates :date, presence: true
   validates :start_at, inclusion: { in: ShiftTime.all.map(&:id) }
@@ -42,8 +45,16 @@ class CleanOrder < ApplicationRecord
 
   validates :spots, presence: true, on: :create
 
+  scope :currently_active, -> {
+    where(order_status_id: [OrderStatus::CHECKING.id, OrderStatus::ACCEPTED.id])
+  }
+
   scope :staff_waiting, -> {
     where(order_status_id: OrderStatus::CHECKING.id).where.not(staff_id: nil)
+  }
+
+  scope :not_reviewed, -> {
+    where.not(id: Review.all.pluck(:clean_order_id))
   }
 
   OrderStatus.all.pluck(:type).each do |status|
@@ -64,8 +75,24 @@ class CleanOrder < ApplicationRecord
     checking? && staff_id
   end
 
+  def completable?
+    accepted?
+  end
+
+  def reviewed?
+    review
+  end
+
   def accept!
     update(order_status: OrderStatus::ACCEPTED) if staff_waiting?
+  end
+
+  def refuse!
+    update(staff_id: nil) if staff_waiting?
+  end
+
+  def complete!
+    update(order_status: OrderStatus::COMPLETED) if completable?
   end
 
   private

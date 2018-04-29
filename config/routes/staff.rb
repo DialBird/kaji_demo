@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :clean_orders, only: %i[index show].freeze do
       member do
         put :accept
+        put :refuse
+        put :complete
       end
     end
   end

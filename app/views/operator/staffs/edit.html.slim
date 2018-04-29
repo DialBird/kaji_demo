@@ -1,0 +1,7 @@
+= display_errors @staff, Staff::PERMITTED_ATTRIBUTES, title: '入力内容にエラーがあります。'
+h1 Edit Staff
+= form_for @staff, url: operator_staff_path do |f|
+  = render 'shared/staff/personal_form', f: f
+  = render 'shared/staff/shifts_form', f: f
+  .text-center.my-4
+    = f.submit 'Submit', class: 'btn btn-success'

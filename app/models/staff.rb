@@ -33,7 +33,7 @@ class Staff < ApplicationRecord
   before_save { email.downcase! }
 
   belongs_to_active_hash :gender
-  has_many :regular_shifts, dependent: :destroy, inverse_of: :staff
+  has_many :regular_shifts, -> { order('dayofweek_id') }, dependent: :destroy, inverse_of: :staff
   accepts_nested_attributes_for :regular_shifts, allow_destroy: true
   has_many :irregular_offs, dependent: :destroy, inverse_of: :staff
   has_many :clean_orders, dependent: :destroy, inverse_of: :staff
@@ -49,6 +49,15 @@ class Staff < ApplicationRecord
   validates :zip, zip_format: true
   validates :password, password_format: true
 
+  scope :gender_is, ->(gender_id) {
+    where(gender_id: gender_id)
+  }
+  scope :name_like, ->(name) {
+    where('name LIKE ?', "%#{name}%")
+  }
+  scope :email_like, ->(email) {
+    where('email LIKE ?', "%#{email}%")
+  }
   scope :assignable, ->(order) {
     all.select { |staff| staff.assignable?(order) }
   }

@@ -1,0 +1,13 @@
+header.bg-dark
+  .container
+    nav.navbar.navbar-expand-md.navbar-dark.navbar-dark
+      = link_to 'Operator Top', operator_root_path, class: 'navbar-brand'
+      - if operator_logged_in?
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarCollapse"]
+          span.navbar-toggler-icon
+        #navbarCollapse.collapse.navbar-collapse
+          .navbar-nav.mr-auto
+            = link_to 'Staffs', operator_staffs_path, class: 'nav-item nav-link'
+            = link_to 'Clean Orders', operator_clean_orders_path, class: 'nav-item nav-link'
+          .navbar-nav
+            = link_to 'Logout', operator_logout_path, method: :delete, class: 'nav-item nav-link'

@@ -4,7 +4,7 @@ class Operator::CleanOrdersController < Operator::ApplicationController
   before_action :setup_clean_order!, only: %i[show assign_staff].freeze
 
   def index
-    @clean_orders = CleanOrder.all.order(:created_at)
+    @clean_orders = CleanOrder.all.order(created_at: :desc)
   end
 
   def show; end
