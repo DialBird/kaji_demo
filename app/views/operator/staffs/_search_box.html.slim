@@ -1,0 +1,31 @@
+.card.mb-4
+  .card-header
+    = fa_icon 'search', text: 'Search Staff'
+  .card-body
+    = form_for @search, as: :search_staff, url: search_operator_staffs_path, method: :get do |f|
+      .row
+        .col-md-6
+          .form-group.row
+            = f.label :gender_ids, class: 'control-label col-md-4'
+            .col-md-8
+              - Gender.all.each_with_index do |gen, idx|
+                .form-check.form-check-inline
+                  = f.check_box :gender_ids, { id: "gen-#{idx}",
+                                               class: 'form-check-input',
+                                               multiple: true,
+                                               checked: f.object.gender_ids.include?(gen.id.to_s) },
+                                            gen.id,
+                                            nil
+                  label.form-check-lebel[for="gen-#{idx}"]
+                    = gen.name
+          .form-group.row
+            = f.label :name, class: 'control-label col-md-4'
+            .col-md-8
+              = f.text_field :name, class: 'form-control'
+        .col-md-6
+          .form-group.row
+            = f.label :email, class: 'control-label col-md-4'
+            .col-md-8
+              = f.text_field :email, class: 'form-control'
+        .col-md-12.text-center
+          = f.submit 'Search', class: 'btn btn-primary'
