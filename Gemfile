@@ -1,4 +1,4 @@
-ruby '2.5.0'
+ruby '2.5.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -27,6 +27,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'html2slim'
+gem 'rubocop-checkstyle_formatter'
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
