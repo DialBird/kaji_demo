@@ -26,9 +26,6 @@
 # carrierwave
 /public/uploads/*
 
-# rubocop
-.rubocop.yml
-
 .env
 
 config/settings.local.yml
