@@ -27,7 +27,6 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'slim-rails'
 gem 'html2slim'
-gem 'rubocop-checkstyle_formatter'
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
@@ -57,6 +56,10 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false
+  gem 'rspec_junit_formatter'
+  gem 'rubocop-checkstyle_formatter', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
