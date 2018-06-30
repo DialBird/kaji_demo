@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.test?
   namespace :ci do
     desc 'For ci (clear Unnecessary files, rubocop, rspec)'

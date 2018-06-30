@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'carrierwave'
 namespace :carrierwave do
   desc 'clear uploader cache files'
